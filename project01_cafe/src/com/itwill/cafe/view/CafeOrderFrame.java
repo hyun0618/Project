@@ -62,7 +62,6 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 	private DefaultTableModel tableModel;	
 	private OrderHistoryDao daoHist = OrderHistoryDao.getInstance();
 	private List<OrderHistory> hist;
-	private JPanel panel;
 	private JComboBox comboBox;
 	private JTextField textField;
 	private JButton btnSearchOrder;
@@ -106,7 +105,7 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x, y, 700, 500);
+		setBounds(x, y, 700, 393);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -120,7 +119,7 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 		contentPane.setLayout(null);
 		
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(12, 10, 660, 441);
+		tabbedPane.setBounds(12, 10, 660, 334);
 		contentPane.add(tabbedPane);
 		
 		coffeePanel = new JPanel();
@@ -192,7 +191,7 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 		OrderDetails.setLayout(null);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 10, 631, 301);	
+		scrollPane.setBounds(12, 10, 631, 207);	
 		OrderDetails.add(scrollPane);
 		
 		table = new JTable();
@@ -205,33 +204,32 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 	
 		scrollPane.setViewportView(table);
 		
-		panel = new JPanel();
-		panel.setBounds(0, 0, 10, 10);
-		OrderDetails.add(panel);
-		panel.setLayout(null);
-		
 		comboBox = new JComboBox();
-		comboBox.setBounds(20, 350, 70, 25);
+		comboBox.setBounds(12, 250, 70, 25);
 		OrderDetails.add(comboBox);
 		comboBox.setFont(new Font("D2Coding", Font.PLAIN, 15));
 		
 		textField = new JTextField();
-		textField.setBounds(100, 350, 120, 25);
+		textField.setBounds(92, 250, 120, 25);
 		OrderDetails.add(textField);
 		textField.setColumns(10);
 		
 		btnSearchOrder = new JButton("주문 검색");
-		btnSearchOrder.setBounds(230, 350, 120, 25);
+		btnSearchOrder.setBounds(222, 250, 120, 25);
 		OrderDetails.add(btnSearchOrder);
 		btnSearchOrder.setFont(new Font("D2Coding", Font.PLAIN, 15));
 		
 		btnChangeOrder = new JButton("주문 변경");
-		btnChangeOrder.setBounds(390, 350, 120, 25);
+		btnChangeOrder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnChangeOrder.setBounds(382, 250, 120, 25);
 		OrderDetails.add(btnChangeOrder);
 		btnChangeOrder.setFont(new Font("D2Coding", Font.PLAIN, 15));
 		
 		btnCancelOrder = new JButton("주문 취소");
-		btnCancelOrder.setBounds(520, 350, 120, 25);
+		btnCancelOrder.setBounds(512, 250, 120, 25);
 		OrderDetails.add(btnCancelOrder);
 		btnCancelOrder.setFont(new Font("D2Coding", Font.PLAIN, 15));
 		
