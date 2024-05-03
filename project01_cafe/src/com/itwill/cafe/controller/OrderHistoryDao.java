@@ -21,6 +21,8 @@ import static com.itwill.cafe.model.OrderHistory.HistoryEntity.*;
 
 public class OrderHistoryDao {
 	
+	
+	
 	private static OrderHistoryDao instance = null;
 	
 	private OrderHistoryDao() {
@@ -57,6 +59,7 @@ public class OrderHistoryDao {
 	private OrderHistory makeOrderHistoryResultSet(ResultSet rs) throws SQLException {
 		int id = rs.getInt(COL_ID);
 		LocalDateTime orderTime = rs.getTimestamp(COL_ORDER_TIME).toLocalDateTime();
+		
 
 		String beverage = rs.getString(COL_BEVERAGE);
 		String beverageOption = rs.getString(COL_BEVERAGE_OPTION);
@@ -66,9 +69,14 @@ public class OrderHistoryDao {
 	}
 	
 	// read() 메서드에서 사용할 SQL문장: select * from orders by orderTime
+//	private static final String SQL_HISTORY_ALL = String.format(
+//			"select * from %s order by %s", 
+//			TBL_ORDERS, COL_ORDER_TIME);
+	
 	private static final String SQL_HISTORY_ALL = String.format(
 			"select * from %s order by %s", 
 			TBL_ORDERS, COL_ORDER_TIME);
+	
 	/**
 	 * 데이터베이스의 ORDERS 테이블에서 모든 행을 검색해서 
 	 * orderTime의 오름차순으로 정렬된 리스트를 반환.
