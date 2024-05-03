@@ -18,6 +18,7 @@ import com.itwill.cafe.model.OrderHistory;
 import com.itwill.cafe.view_menu.OrderUsaFrame.UsaOrderNotify;
 import com.itwill.cafe.view_menu.OrderCappFrame;
 import com.itwill.cafe.view_menu.OrderEspFrame;
+import com.itwill.cafe.view_menu.OrderLtFrame;
 import com.itwill.cafe.view_menu.OrderUsaFrame;
 
 import javax.swing.JTabbedPane;
@@ -144,7 +145,8 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 		btnCapp.setBounds(350, 170, 120, 30);
 		coffeePanel.add(btnCapp);
 		
-		btnLt = new JButton("카페라떼");		
+		btnLt = new JButton("카페라떼");
+		btnLt.addActionListener((e) -> orderLt());
 		btnLt.setFont(new Font("D2Coding", Font.PLAIN, 15));
 		btnLt.setBounds(350, 30, 120, 30);
 		coffeePanel.add(btnLt);
@@ -270,6 +272,10 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 	        // 최대 길이에 따라 열의 너비 조정
 	        column.setPreferredWidth(maxWidth + 20); // 적절한 여유 공간을 더해줌
 	    }
+	}
+	
+	private void orderLt() {
+		OrderLtFrame.showOrderLtFrame();
 	}
 	
 	private void orderCapp() {
