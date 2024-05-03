@@ -33,19 +33,19 @@ public class OrderUsaFrame extends JFrame {
 	
 	private OrderHistoryDao daohist = OrderHistoryDao.getInstance();
 	private UsaOrderNotify app;
-	
-	private final ButtonGroup buttonGroupShot = new ButtonGroup();
-	private final ButtonGroup buttonGroupSize = new ButtonGroup();
+		
 	private final ButtonGroup buttonGroupCold = new ButtonGroup();
+	private final ButtonGroup buttonGroupSize = new ButtonGroup();
+	private final ButtonGroup buttonGroupShot = new ButtonGroup();
 	
 	private Component parent;
 	private JPanel contentPane;
-	private JRadioButton rbShotPlus;
-	private JRadioButton rbShotMinus;
-	private JRadioButton rbHot;
-	private JRadioButton rbIce;
-	private JRadioButton rbRegular;
-	private JRadioButton rbLarge;
+	private JRadioButton rbUsaShotPlus;
+	private JRadioButton rbUsaShotMinus;
+	private JRadioButton rbUsaHot;
+	private JRadioButton rbUsaIce;
+	private JRadioButton rbUsaRegular;
+	private JRadioButton rbUsaLarge;
 	private JButton btnUsaOrder;
 	private JTextArea textUsaOption;
 	private JButton btnUsaChoice;
@@ -106,44 +106,46 @@ public class OrderUsaFrame extends JFrame {
 		lblUsa.setBounds(30, 20, 100, 20);
 		contentPane.add(lblUsa);
 		
-	
+		lblUsaOption = new JLabel("옵션");
+		lblUsaOption.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		lblUsaOption.setBounds(45, 60, 30, 15);
+		contentPane.add(lblUsaOption);
+				
+		rbUsaHot = new JRadioButton("Hot");		
+		buttonGroupCold.add(rbUsaHot);
+		rbUsaHot.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		rbUsaHot.setBounds(90, 60, 100, 20);
+		contentPane.add(rbUsaHot);
 		
+		rbUsaIce = new JRadioButton("Ice");		
+		buttonGroupCold.add(rbUsaIce);
+		rbUsaIce.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		rbUsaIce.setBounds(190, 60, 90, 20);
+		contentPane.add(rbUsaIce);
 		
-		rbHot = new JRadioButton("HOT");		
-		buttonGroupCold.add(rbHot);
-		rbHot.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbHot.setBounds(90, 60, 100, 20);
-		contentPane.add(rbHot);
+		rbUsaRegular = new JRadioButton("Regular");	
+		buttonGroupSize.add(rbUsaRegular);
+		rbUsaRegular.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		rbUsaRegular.setBounds(90, 90, 100, 20);
+		contentPane.add(rbUsaRegular);
 		
-		rbIce = new JRadioButton("ICE");		
-		buttonGroupCold.add(rbIce);
-		rbIce.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbIce.setBounds(190, 60, 90, 20);
-		contentPane.add(rbIce);
+		rbUsaLarge = new JRadioButton("Large");		
+		buttonGroupSize.add(rbUsaLarge);
+		rbUsaLarge.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		rbUsaLarge.setBounds(190, 90, 90, 20);
+		contentPane.add(rbUsaLarge);
 		
-		rbRegular = new JRadioButton("Regular");	
-		buttonGroupSize.add(rbRegular);
-		rbRegular.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbRegular.setBounds(90, 90, 100, 20);
-		contentPane.add(rbRegular);
+		rbUsaShotPlus = new JRadioButton("샷 추가");
+		buttonGroupShot.add(rbUsaShotPlus);
+		rbUsaShotPlus.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		rbUsaShotPlus.setBounds(90, 120, 100, 20);
+		contentPane.add(rbUsaShotPlus);
 		
-		rbLarge = new JRadioButton("Large");		
-		buttonGroupSize.add(rbLarge);
-		rbLarge.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbLarge.setBounds(190, 90, 90, 20);
-		contentPane.add(rbLarge);
-		
-		rbShotPlus = new JRadioButton("샷 추가");
-		buttonGroupShot.add(rbShotPlus);
-		rbShotPlus.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbShotPlus.setBounds(90, 120, 100, 20);
-		contentPane.add(rbShotPlus);
-		
-		rbShotMinus = new JRadioButton("샷 1/2");		
-		buttonGroupShot.add(rbShotMinus);
-		rbShotMinus.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbShotMinus.setBounds(190, 120, 90, 20);
-		contentPane.add(rbShotMinus);
+		rbUsaShotMinus = new JRadioButton("샷 1/2");		
+		buttonGroupShot.add(rbUsaShotMinus);
+		rbUsaShotMinus.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		rbUsaShotMinus.setBounds(190, 120, 90, 20);
+		contentPane.add(rbUsaShotMinus);
 		
 		btnUsaChoice = new JButton("선택");
 		btnUsaChoice.addActionListener(new ActionListener() {
@@ -178,12 +180,7 @@ public class OrderUsaFrame extends JFrame {
 		btnUsaOrder.setFont(new Font("D2Coding", Font.PLAIN, 15));
 		btnUsaOrder.setBounds(290, 180, 70, 30);
 		contentPane.add(btnUsaOrder);
-		
-		lblUsaOption = new JLabel("옵션");
-		lblUsaOption.setFont(new Font("D2Coding", Font.PLAIN, 13));
-		lblUsaOption.setBounds(45, 60, 30, 15);
-		contentPane.add(lblUsaOption);
-		
+			
 	}
 	
 	private void saveUsaOrder() {
@@ -202,32 +199,32 @@ public class OrderUsaFrame extends JFrame {
 	private void handleUsaClick() {
 		StringBuffer buffer = new StringBuffer();
 	
-		if (rbHot.isSelected()) {
-			buffer.append(rbHot.getText());
-		} else if (rbIce.isSelected()) {
-			buffer.append(rbIce.getText());
+		if (rbUsaHot.isSelected()) {
+			buffer.append(rbUsaHot.getText());
+		} else if (rbUsaIce.isSelected()) {
+			buffer.append(rbUsaIce.getText());
 		} else {
 			JOptionPane.showMessageDialog(contentPane, "HOT/ ICE를 선택하지 않았습니다.");
 		}
 		
-		if (rbRegular.isSelected()) {
-			buffer.append("/ " + rbRegular.getText());
-		} else if (rbLarge.isSelected()) {
-			buffer.append("/ " + rbLarge.getText());
+		if (rbUsaRegular.isSelected()) {
+			buffer.append("/ " + rbUsaRegular.getText());
+		} else if (rbUsaLarge.isSelected()) {
+			buffer.append("/ " + rbUsaLarge.getText());
 		} else {
 			JOptionPane.showMessageDialog(contentPane, "사이즈를 선택하지 않았습니다.");
 		}
 		
-		if (rbShotPlus.isSelected()) {
-			buffer.append("/ " + rbShotPlus.getText());
-		} else if (rbShotMinus.isSelected()) {
-			buffer.append("/ " + rbShotMinus.getText());
+		if (rbUsaShotPlus.isSelected()) {
+			buffer.append("/ " + rbUsaShotPlus.getText());
+		} else if (rbUsaShotMinus.isSelected()) {
+			buffer.append("/ " + rbUsaShotMinus.getText());
 		} else {
 			buffer.append("");
 		}
 			
-		if ((rbHot.isSelected() || rbIce.isSelected()) &&
-				(rbRegular.isSelected() || rbLarge.isSelected())) {
+		if ((rbUsaHot.isSelected() || rbUsaIce.isSelected()) &&
+				(rbUsaRegular.isSelected() || rbUsaLarge.isSelected())) {
 			textUsaOption.setText(buffer.toString()); 
 		} 
 	}
