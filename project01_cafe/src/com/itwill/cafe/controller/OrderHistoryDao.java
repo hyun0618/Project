@@ -6,8 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,21 +58,16 @@ public class OrderHistoryDao {
 	// ResultSet에서 각 컬럼의 값들을 읽어서 OrderHistory 타입의 객체를 생성하고 리턴. 
 	private OrderHistory makeOrderHistoryResultSet(ResultSet rs) throws SQLException {
 		int id = rs.getInt(COL_ID);
-		LocalDateTime orderTime = rs.getTimestamp(COL_ORDER_TIME).toLocalDateTime();
-		
-
+		LocalDateTime orderTime = rs.getTimestamp(COL_ORDER_TIME).toLocalDateTime();	
 		String beverage = rs.getString(COL_BEVERAGE);
 		String beverageOption = rs.getString(COL_BEVERAGE_OPTION);
+		String beveragePrice = rs.getString(COL_BEVERAGE_PRICE);
 		
-		OrderHistory hist = new OrderHistory(id, orderTime, beverage, beverageOption);
+		OrderHistory hist = new OrderHistory(id, orderTime, beverage, beverageOption, beveragePrice);
 		return hist;
 	}
 	
 	// read() 메서드에서 사용할 SQL문장: select * from orders by orderTime
-//	private static final String SQL_HISTORY_ALL = String.format(
-//			"select * from %s order by %s", 
-//			TBL_ORDERS, COL_ORDER_TIME);
-	
 	private static final String SQL_HISTORY_ALL = String.format(
 			"select * from %s order by %s", 
 			TBL_ORDERS, COL_ORDER_TIME);
@@ -89,6 +84,7 @@ public class OrderHistoryDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
+		OrderHistory hist = null;
 		
 		try {
 			conn = DriverManager.getConnection(URL, USER, PASSWORD); // 데이터베이스에 접속.
@@ -96,7 +92,8 @@ public class OrderHistoryDao {
 			rs = stmt.executeQuery(); // SQL 문장을 데이터베이스로 전송해서 실행.
 			
 			while (rs.next()) { // 리턴 결과를 처리.
-				OrderHistory hist = makeOrderHistoryResultSet(rs);
+				// OrderHistory hist = makeOrderHistoryResultSet(rs);
+				hist = makeOrderHistoryResultSet(rs);
 				result.add(hist);
 			}
 			
@@ -112,8 +109,8 @@ public class OrderHistoryDao {
 	// save(OrderHistory hist) 메서드에서 사용할 SQL:
 	// insert into orders (beverage, beverageOption) values (?, ?)
 	private static final String SQL_INSERT = String.format(
-			"insert into %s (%s, %s) values (?, ?)", 
-			TBL_ORDERS, COL_BEVERAGE, COL_BEVERAGE_OPTION);
+			"insert into %s (%s, %s, %s) values (?, ?, ?)", 
+			TBL_ORDERS, COL_BEVERAGE, COL_BEVERAGE_OPTION, COL_BEVERAGE_PRICE);
 	
 	public int save(OrderHistory hist) {
 		int result = 0;
@@ -125,6 +122,7 @@ public class OrderHistoryDao {
 			stmt = conn.prepareStatement(SQL_INSERT);
 			stmt.setString(1, hist.getBeverage());
 			stmt.setString(2, hist.getBeverageOption());
+			stmt.setString(3, hist.getBeveragePrice());
 			result = stmt.executeUpdate();
 		
 		} catch (SQLException e) {
