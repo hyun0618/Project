@@ -1,5 +1,7 @@
 package com.itwill.cafe.model;
 
+
+
 import java.time.LocalDateTime;
 
 public class OrderHistory {
@@ -12,6 +14,7 @@ public class OrderHistory {
 		public static final String COL_ORDER_TIME = "order_time";
 		public static final String COL_BEVERAGE = "beverage";
 		public static final String COL_BEVERAGE_OPTION = "beverage_option";
+		public static final String COL_BEVERAGE_PRICE = "beverage_price";
 		
 	}
 	
@@ -19,14 +22,17 @@ public class OrderHistory {
 	private LocalDateTime orderTime;
 	private String beverage;
 	private String beverageOption;
+	private String beveragePrice;
 	
 	public OrderHistory() {}
 	
-	public OrderHistory(int id, LocalDateTime orderTime, String beverage, String beverageOption) {
+	public OrderHistory(int id, LocalDateTime orderTime, 
+			String beverage, String beverageOption, String beveragePrice ) {
 		this.id = id;
 		this.orderTime = orderTime;
 		this.beverage = beverage;
 		this.beverageOption = beverageOption;
+		this.beveragePrice = beveragePrice;
 	}
 
 	public int getId() {
@@ -59,6 +65,14 @@ public class OrderHistory {
 
 	public void setBeverageOption(String beverageOption) {
 		this.beverageOption = beverageOption;
+	}
+
+	public String getBeveragePrice() {
+		return beveragePrice;
+	}
+
+	public void setBeveragePrice(String beveragePrice) {
+		this.beveragePrice = beveragePrice;
 	}
 
 }
