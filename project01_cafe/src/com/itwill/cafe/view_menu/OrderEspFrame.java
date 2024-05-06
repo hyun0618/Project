@@ -31,11 +31,14 @@ public class OrderEspFrame extends JFrame {
 	
 	private JPanel contentPane;
 	private JLabel lblEsp;
+	private JLabel lblOption;
 	private JRadioButton rbEspSingle;
 	private JRadioButton rbEspDouble;
 	private JButton btnEspChoice;
 	private JTextArea textEspOption;
 	private JButton btnEspOrder;
+	private JLabel lblEspPrice;
+	private JLabel lblEspDouble;
 	
 	
 	/**
@@ -77,7 +80,7 @@ public class OrderEspFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x+230, y+200, 300, 200);
+		setBounds(x, y+330, 390, 230);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -90,35 +93,45 @@ public class OrderEspFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		lblEsp = new JLabel("에스프레소");
-		lblEsp.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		lblEsp.setBounds(30, 20, 100, 20);
+		lblEsp.setFont(new Font("D2Coding", Font.PLAIN, 17));
+		lblEsp.setBounds(12, 10, 92, 20);
 		contentPane.add(lblEsp);
+		
+		lblOption = new JLabel("옵션");
+		lblOption.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		lblOption.setBounds(62, 57, 42, 15);
+		contentPane.add(lblOption);
 		
 		rbEspSingle = new JRadioButton("싱글");
 		buttonGroupEsp.add(rbEspSingle);
 		rbEspSingle.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbEspSingle.setBounds(30, 55, 60, 20);
+		rbEspSingle.setBounds(120, 54, 60, 20);
 		contentPane.add(rbEspSingle);
 		
 		rbEspDouble = new JRadioButton("더블");
 		buttonGroupEsp.add(rbEspDouble);
 		rbEspDouble.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbEspDouble.setBounds(100, 55, 60, 20);
+		rbEspDouble.setBounds(185, 54, 60, 20);
 		contentPane.add(rbEspDouble);
 		
-		btnEspChoice = new JButton("확인");
+		lblEspDouble = new JLabel("(+\\500)");
+		lblEspDouble.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		lblEspDouble.setBounds(195, 80, 50, 15);
+		contentPane.add(lblEspDouble);
+		
+		btnEspChoice = new JButton("선택");
 		btnEspChoice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				handleEspClick();
 			}
 		});
 		btnEspChoice.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		btnEspChoice.setBounds(180, 50, 70, 30);
+		btnEspChoice.setBounds(267, 57, 70, 30);
 		contentPane.add(btnEspChoice);
 		
 		textEspOption = new JTextArea();
 		textEspOption.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		textEspOption.setBounds(70, 100, 60, 30);
+		textEspOption.setBounds(120, 126, 125, 30);
 		contentPane.add(textEspOption);
 		
 		btnEspOrder = new JButton("주문");
@@ -134,16 +147,24 @@ public class OrderEspFrame extends JFrame {
 			}
 		});
 		btnEspOrder.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		btnEspOrder.setBounds(180, 100, 70, 30);
+		btnEspOrder.setBounds(267, 122, 70, 30);
 		contentPane.add(btnEspOrder);
+		
+		lblEspPrice = new JLabel("\\3,000");
+		lblEspPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+		lblEspPrice.setBounds(128, 11, 52, 15);
+		contentPane.add(lblEspPrice);
+		
+		
 		
 	}
 	
 	private void saveEspOrder() {
 		String beverage = lblEsp.getText();
 		String option = textEspOption.getText();
+		String price = lblEspPrice.getText();
 		
-		OrderHistory hist = new OrderHistory(0, null, beverage, option);
+		OrderHistory hist = new OrderHistory(0, null, beverage, option, price);
 		int result = daohist.save(hist);
 		if (result == 1) {
 			
@@ -153,6 +174,12 @@ public class OrderEspFrame extends JFrame {
 	
 	private void handleEspClick() {
 		StringBuffer buffer = new StringBuffer();
+		
+		if (rbEspDouble.isSelected()) {
+			lblEspPrice.setText("\\3,500");
+		} else {
+			lblEspPrice.setText("\\3,000");
+		}
 		
 		if (rbEspSingle.isSelected()) {
 			buffer.append(rbEspSingle.getText());
