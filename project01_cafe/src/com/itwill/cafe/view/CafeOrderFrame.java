@@ -16,31 +16,42 @@ import javax.swing.table.TableModel;
 import com.itwill.cafe.controller.OrderHistoryDao;
 import com.itwill.cafe.model.OrderHistory;
 import com.itwill.cafe.view_menu.OrderUsaFrame.UsaOrderNotify;
+import com.itwill.cafe.view_menu.OrderAdeFrame;
 import com.itwill.cafe.view_menu.OrderCappFrame;
+import com.itwill.cafe.view_menu.OrderChocoFrame;
 import com.itwill.cafe.view_menu.OrderEspFrame;
 import com.itwill.cafe.view_menu.OrderLtFrame;
+import com.itwill.cafe.view_menu.OrderStbFrame;
 import com.itwill.cafe.view_menu.OrderUsaFrame;
 
 import javax.swing.JTabbedPane;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
+
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 	
+
+
+	
 	private static final String[] COLUMN_ORDERS = {
-			"번호", "주문시간", "음료", "옵션"
+			"번호", "주문시간", "음료", "옵션", "가격"
 	};
 
 	private static final long serialVersionUID = 1L;
+	
+
 	
 	private JFrame frame;
 	private Component parent;
@@ -68,6 +79,14 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 	private JButton btnSearchOrder;
 	private JButton btnChangeOrder;
 	private JButton btnCancelOrder;
+	private JLabel lblUsaImage;
+	private JTextField textLtPrice;
+	private JTextField textUsaPrice;
+	private JTextField textEspPrice;
+	private JTextField textCappPrice;
+	private JTextField textAdePrice;
+	private JTextField textStbPrice;
+	private JTextField textChocoPrice;
 	
 
 	/**
@@ -106,7 +125,7 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x, y, 700, 393);
+		setBounds(x, y, 700, 600);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -120,7 +139,7 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 		contentPane.setLayout(null);
 		
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(12, 10, 660, 334);
+		tabbedPane.setBounds(12, 10, 662, 335);
 		contentPane.add(tabbedPane);
 		
 		coffeePanel = new JPanel();
@@ -128,47 +147,113 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 		coffeePanel.setLayout(null);
 		
 		btnUsa = new JButton("아메리카노");
-		btnUsa.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		btnUsa.setFont(new Font("D2Coding", Font.PLAIN, 17));
 		btnUsa.addActionListener((e) -> orderUsa());
-		btnUsa.setBounds(30, 30, 120, 30);
+		btnUsa.setBounds(35, 30, 130, 30);
 		coffeePanel.add(btnUsa);
+		
+		textUsaPrice = new JTextField();
+		textUsaPrice.setText("\\3,000");
+		textUsaPrice.setHorizontalAlignment(SwingConstants.CENTER);
+		textUsaPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+		textUsaPrice.setEditable(false);
+		textUsaPrice.setColumns(10);
+		textUsaPrice.setBounds(35, 70, 130, 20);
+		coffeePanel.add(textUsaPrice);
 		
 		btnEsp = new JButton("에스프레소");
 		btnEsp.addActionListener((e) -> orderEsp());
-		btnEsp.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		btnEsp.setBounds(30, 170, 120, 30);
+		btnEsp.setFont(new Font("D2Coding", Font.PLAIN, 17));
+		btnEsp.setBounds(35, 170, 130, 30);
 		coffeePanel.add(btnEsp);
+		
+		textEspPrice = new JTextField();
+		textEspPrice.setText("\\3,000");
+		textEspPrice.setHorizontalAlignment(SwingConstants.CENTER);
+		textEspPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+		textEspPrice.setEditable(false);
+		textEspPrice.setColumns(10);
+		textEspPrice.setBounds(35, 210, 130, 20);
+		coffeePanel.add(textEspPrice);
 		
 		btnCapp = new JButton("카푸치노");
 		btnCapp.addActionListener((e) -> orderCapp());
-		btnCapp.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		btnCapp.setFont(new Font("D2Coding", Font.PLAIN, 17));
 		btnCapp.setBounds(350, 170, 120, 30);
 		coffeePanel.add(btnCapp);
 		
+		textCappPrice = new JTextField();
+		textCappPrice.setText("\\4,000");
+		textCappPrice.setHorizontalAlignment(SwingConstants.CENTER);
+		textCappPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+		textCappPrice.setEditable(false);
+		textCappPrice.setColumns(10);
+		textCappPrice.setBounds(350, 210, 120, 20);
+		coffeePanel.add(textCappPrice);
+		
 		btnLt = new JButton("카페라떼");
 		btnLt.addActionListener((e) -> orderLt());
-		btnLt.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		btnLt.setFont(new Font("D2Coding", Font.PLAIN, 17));
 		btnLt.setBounds(350, 30, 120, 30);
 		coffeePanel.add(btnLt);
+		
+		textLtPrice = new JTextField();
+		textLtPrice.setHorizontalAlignment(SwingConstants.CENTER);
+		textLtPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+		textLtPrice.setText("\\4,000");
+		textLtPrice.setEditable(false);
+		textLtPrice.setBounds(350, 70, 120, 20);
+		coffeePanel.add(textLtPrice);
+		textLtPrice.setColumns(10);
 		
 		nonCoffee = new JPanel();
 		tabbedPane.addTab("nonCoffee", null, nonCoffee, null);
 		nonCoffee.setLayout(null);
 		
 		btnAde = new JButton("자몽에이드");
-		btnAde.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		btnAde.setBounds(30, 30, 120, 30);
+		btnAde.addActionListener((e) -> orderAde());
+		btnAde.setFont(new Font("D2Coding", Font.PLAIN, 17));
+		btnAde.setBounds(35, 30, 130, 30);
 		nonCoffee.add(btnAde);
 		
+		textAdePrice = new JTextField();
+		textAdePrice.setText("\\5,000");
+		textAdePrice.setHorizontalAlignment(SwingConstants.CENTER);
+		textAdePrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+		textAdePrice.setEditable(false);
+		textAdePrice.setColumns(10);
+		textAdePrice.setBounds(35, 70, 130, 20);
+		nonCoffee.add(textAdePrice);
+		
 		btnStb = new JButton("딸기스무디");
-		btnStb.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		btnStb.setBounds(350, 30, 120, 30);
+		btnStb.addActionListener((e) -> orderStb());
+		btnStb.setFont(new Font("D2Coding", Font.PLAIN, 17));
+		btnStb.setBounds(350, 30, 130, 30);
 		nonCoffee.add(btnStb);
 		
+		textStbPrice = new JTextField();
+		textStbPrice.setText("\\5,000");
+		textStbPrice.setHorizontalAlignment(SwingConstants.CENTER);
+		textStbPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+		textStbPrice.setEditable(false);
+		textStbPrice.setColumns(10);
+		textStbPrice.setBounds(350, 70, 130, 20);
+		nonCoffee.add(textStbPrice);
+		
 		btnChoco = new JButton("초코프라푸치노");
-		btnChoco.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		btnChoco.setBounds(30, 170, 140, 30);
+		btnChoco.addActionListener((e) -> orderChoco());
+		btnChoco.setFont(new Font("D2Coding", Font.PLAIN, 17));
+		btnChoco.setBounds(35, 170, 155, 30);
 		nonCoffee.add(btnChoco);
+		
+		textChocoPrice = new JTextField();
+		textChocoPrice.setText("\\5,500");
+		textChocoPrice.setHorizontalAlignment(SwingConstants.CENTER);
+		textChocoPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+		textChocoPrice.setEditable(false);
+		textChocoPrice.setColumns(10);
+		textChocoPrice.setBounds(35, 210, 155, 20);
+		nonCoffee.add(textChocoPrice);
 		
 		OrderDetails = new JPanel();
 		tabbedPane.addTab("주문내역", null, OrderDetails, null);
@@ -181,24 +266,16 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 			}
 		});
 		
-//		btnOrder.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				showCafeOrder();
-//				frame.dispose();
-//			}
-//		});
-		
-		
-		
+				
 		OrderDetails.setLayout(null);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 10, 631, 207);	
+		scrollPane.setBounds(12, 10, 633, 207);	
 		OrderDetails.add(scrollPane);
 		
 		table = new JTable();
 	
-		table.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		table.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 		tableModel = new DefaultTableModel(null, COLUMN_ORDERS);
 						
 		scrollPane.add(table);		
@@ -207,33 +284,34 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 		scrollPane.setViewportView(table);
 		
 		comboBox = new JComboBox();
-		comboBox.setBounds(12, 250, 70, 25);
+		comboBox.setBounds(35, 245, 70, 25);
 		OrderDetails.add(comboBox);
-		comboBox.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		comboBox.setFont(new Font("D2Coding", Font.PLAIN, 17));
 		
 		textField = new JTextField();
-		textField.setBounds(92, 250, 120, 25);
+		textField.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		textField.setBounds(115, 245, 120, 25);
 		OrderDetails.add(textField);
 		textField.setColumns(10);
 		
 		btnSearchOrder = new JButton("주문 검색");
-		btnSearchOrder.setBounds(222, 250, 120, 25);
+		btnSearchOrder.setBounds(247, 245, 100, 25);
 		OrderDetails.add(btnSearchOrder);
-		btnSearchOrder.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		btnSearchOrder.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 		
 		btnChangeOrder = new JButton("주문 변경");
 		btnChangeOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnChangeOrder.setBounds(382, 250, 120, 25);
+		btnChangeOrder.setBounds(400, 245, 100, 25);
 		OrderDetails.add(btnChangeOrder);
-		btnChangeOrder.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		btnChangeOrder.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 		
 		btnCancelOrder = new JButton("주문 취소");
-		btnCancelOrder.setBounds(512, 250, 120, 25);
+		btnCancelOrder.setBounds(521, 245, 100, 25);
 		OrderDetails.add(btnCancelOrder);
-		btnCancelOrder.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		btnCancelOrder.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 		
 	}
 	
@@ -251,7 +329,7 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 	    for (OrderHistory h : hist) {
 	        Object[] row = {
 	                h.getId(), h.getOrderTime(),
-	                h.getBeverage(), h.getBeverageOption()
+	                h.getBeverage(), h.getBeverageOption(), h.getBeveragePrice()
 	        };
 	        tableModel.addRow(row);
 	    }
@@ -274,8 +352,21 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 	    }
 	}
 	
+	
+	private void orderChoco() {
+		OrderChocoFrame.showOrderChocoFrame(CafeOrderFrame.this);
+	}
+	
+	private void orderStb() {
+		OrderStbFrame.showOrderStbFrame(CafeOrderFrame.this);
+	}
+	
+	private void orderAde() {
+		OrderAdeFrame.showOrderAdeFrame(CafeOrderFrame.this);
+	}
+	
 	private void orderLt() {
-		OrderLtFrame.showOrderLtFrame();
+		OrderLtFrame.showOrderLtFrame(CafeOrderFrame.this);
 	}
 	
 	private void orderCapp() {
