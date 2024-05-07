@@ -25,12 +25,15 @@ import com.itwill.cafe.view_menu.OrderStbFrame;
 import com.itwill.cafe.view_menu.OrderUsaFrame;
 
 import javax.swing.JTabbedPane;
-
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 
 
@@ -42,7 +45,9 @@ import javax.swing.SwingConstants;
 
 public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 	
-
+	private static final String[] SEARCH_TYPES = {
+			"날짜", "음료"	
+	};
 
 	
 	private static final String[] COLUMN_ORDERS = {
@@ -74,10 +79,10 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 	private DefaultTableModel tableModel;	
 	private OrderHistoryDao daoHist = OrderHistoryDao.getInstance();
 	private List<OrderHistory> hist;
-	private JComboBox comboBox;
-	private JTextField textField;
+	private JComboBox<String> comboBox;
+	private JTextField textSearch;
 	private JButton btnSearchOrder;
-	private JButton btnChangeOrder;
+	private JButton btnAllOrder;
 	private JButton btnCancelOrder;
 	private JLabel lblUsaImage;
 	private JTextField textLtPrice;
@@ -87,7 +92,9 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 	private JTextField textAdePrice;
 	private JTextField textStbPrice;
 	private JTextField textChocoPrice;
-	
+	private JButton btnTotal;
+	private JTextField textTotal;
+	private int totalBeveragePrice;
 
 	/**
 	 * Launch the application.
@@ -228,7 +235,7 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 		btnStb = new JButton("딸기스무디");
 		btnStb.addActionListener((e) -> orderStb());
 		btnStb.setFont(new Font("D2Coding", Font.PLAIN, 17));
-		btnStb.setBounds(350, 30, 130, 30);
+		btnStb.setBounds(500, 30, 120, 30);
 		nonCoffee.add(btnStb);
 		
 		textStbPrice = new JTextField();
@@ -237,7 +244,7 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 		textStbPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 		textStbPrice.setEditable(false);
 		textStbPrice.setColumns(10);
-		textStbPrice.setBounds(350, 70, 130, 20);
+		textStbPrice.setBounds(500, 70, 120, 20);
 		nonCoffee.add(textStbPrice);
 		
 		btnChoco = new JButton("초코프라푸치노");
@@ -283,48 +290,133 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 	
 		scrollPane.setViewportView(table);
 		
-		comboBox = new JComboBox();
-		comboBox.setBounds(35, 245, 70, 25);
+		comboBox = new JComboBox<>();
+		final DefaultComboBoxModel<String> comboBoxModel = 
+				new DefaultComboBoxModel<>(SEARCH_TYPES);
+		comboBox.setModel(comboBoxModel);
+		comboBox.setBounds(150, 230, 70, 25);
 		OrderDetails.add(comboBox);
-		comboBox.setFont(new Font("D2Coding", Font.PLAIN, 17));
+		comboBox.setFont(new Font("D2Coding", Font.PLAIN, 15));
 		
-		textField = new JTextField();
-		textField.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
-		textField.setBounds(115, 245, 120, 25);
-		OrderDetails.add(textField);
-		textField.setColumns(10);
+		textSearch = new JTextField();
+		textSearch.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+		textSearch.setBounds(230, 230, 120, 25);
+		OrderDetails.add(textSearch);
+		textSearch.setColumns(10);
 		
 		btnSearchOrder = new JButton("주문 검색");
-		btnSearchOrder.setBounds(247, 245, 100, 25);
+		btnSearchOrder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {		
+				try {
+					searchOrder();
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
+		});
+		btnSearchOrder.setBounds(360, 230, 100, 25);
 		OrderDetails.add(btnSearchOrder);
 		btnSearchOrder.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 		
-		btnChangeOrder = new JButton("주문 변경");
-		btnChangeOrder.addActionListener(new ActionListener() {
+		btnAllOrder = new JButton("주문 전체");
+		btnAllOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				orderHistory();
 			}
 		});
-		btnChangeOrder.setBounds(400, 245, 100, 25);
-		OrderDetails.add(btnChangeOrder);
-		btnChangeOrder.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+		btnAllOrder.setBounds(20, 230, 100, 25);
+		OrderDetails.add(btnAllOrder);
+		btnAllOrder.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 		
-		btnCancelOrder = new JButton("주문 취소");
-		btnCancelOrder.setBounds(521, 245, 100, 25);
+		btnCancelOrder = new JButton("주문 취소 및 삭제");
+		btnCancelOrder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				deleteOrder();
+			}
+		});
+		btnCancelOrder.setBounds(470, 230, 160, 25);
 		OrderDetails.add(btnCancelOrder);
 		btnCancelOrder.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 		
-	}
-	
-	// 테이블 ORDERS 	
-	private void orderHistory() {
-		List<OrderHistory> hist = daoHist.read();
-		resetHistory(hist);
+		btnTotal = new JButton("주문 금액 합계");
+		btnTotal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 textTotal.setText(String.format("\\%,d", totalBeveragePrice));
+			}
+		});
+		btnTotal.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+		btnTotal.setBounds(360, 265, 135, 25);
+		OrderDetails.add(btnTotal);
+		
+		textTotal = new JTextField();
+		textTotal.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+		textTotal.setEditable(false);
+		textTotal.setBounds(510, 265, 120, 25);
+		OrderDetails.add(textTotal);
+		textTotal.setColumns(10);
 		
 	}
+
+// 주문 검색
 	
+	private void searchOrder() throws ParseException {
+		int type = comboBox.getSelectedIndex(); 
+		String keyword = textSearch.getText(); 
+		if (keyword.equals("")) {
+			JOptionPane.showMessageDialog(
+					frame, 
+					"검색어를 입력하세요.", 
+					"경고",  
+					JOptionPane.WARNING_MESSAGE);
+			textSearch.requestFocus(); // -> textSearch에 포커스.
+			
+			return;
+		}
+		
+		List<OrderHistory> hist = daoHist.search(type, keyword);
+		resetHistory(hist);
+	}
+	
+	
+// 주문 취소 및 삭제
+	private void deleteOrder() {
+		int index = table.getSelectedRow(); 
+		if (index == -1) { 
+			JOptionPane.showMessageDialog(
+					frame, 
+					"삭제할 행을 선택하세요.", 
+					"경고", 
+					JOptionPane.WARNING_MESSAGE);
+			return;
+		}
+		
+		int confirm = JOptionPane.showConfirmDialog(
+				frame, 
+				"정말 삭제하시겠습니까?", 
+				"삭제 확인", 
+				JOptionPane.YES_NO_OPTION);
+		if (confirm == JOptionPane.YES_OPTION) {
+			Integer id = (Integer) tableModel.getValueAt(index, 0);
+			int result = daoHist.delete(id);
+			if (result == 1) {
+				orderHistory();
+				JOptionPane.showMessageDialog(frame, "주문이 삭제되었습니다.");
+			} 		
+		}
+	}
+	
+	
+// 테이블 ORDERS 	
+	private void orderHistory() {
+		List<OrderHistory> hist = daoHist.read();
+		resetHistory(hist);	
+	}
 
 	private void resetHistory(List<OrderHistory> hist) {
-	    tableModel = new DefaultTableModel(null, COLUMN_ORDERS);
+
+		tableModel = new DefaultTableModel(null, COLUMN_ORDERS);
+	    totalBeveragePrice = 0;
 
 	    for (OrderHistory h : hist) {
 	        Object[] row = {
@@ -332,9 +424,12 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 	                h.getBeverage(), h.getBeverageOption(), h.getBeveragePrice()
 	        };
 	        tableModel.addRow(row);
+	      
+	        totalBeveragePrice += h.getBeveragePrice();      
 	    }
 	    table.setModel(tableModel);
-
+	    
+	    
 	    // 각 열의 너비 동적 조정
 	    for (int columnIndex = 0; columnIndex < table.getColumnCount(); columnIndex++) {
 	        TableColumn column = table.getColumnModel().getColumn(columnIndex);
