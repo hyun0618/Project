@@ -22,12 +22,12 @@ public class OrderHistory {
 	private LocalDateTime orderTime;
 	private String beverage;
 	private String beverageOption;
-	private String beveragePrice;
+	private int beveragePrice;
 	
 	public OrderHistory() {}
 	
 	public OrderHistory(int id, LocalDateTime orderTime, 
-			String beverage, String beverageOption, String beveragePrice ) {
+			String beverage, String beverageOption, int beveragePrice ) {
 		this.id = id;
 		this.orderTime = orderTime;
 		this.beverage = beverage;
@@ -67,11 +67,11 @@ public class OrderHistory {
 		this.beverageOption = beverageOption;
 	}
 
-	public String getBeveragePrice() {
+	public int getBeveragePrice() {
 		return beveragePrice;
 	}
 
-	public void setBeveragePrice(String beveragePrice) {
+	public void setBeveragePrice(int beveragePrice) {
 		this.beveragePrice = beveragePrice;
 	}
 
