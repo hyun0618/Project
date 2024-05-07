@@ -11,7 +11,6 @@ public class OrderHistory {
 		public static final String TBL_ORDERS = "ORDERS";
 		
 		public static final String COL_ID = "id";
-		public static final String COL_ORDER_TIME = "order_time";
 		public static final String COL_BEVERAGE = "beverage";
 		public static final String COL_BEVERAGE_OPTION = "beverage_option";
 		public static final String COL_BEVERAGE_PRICE = "beverage_price";
@@ -19,17 +18,14 @@ public class OrderHistory {
 	}
 	
 	private int id;
-	private LocalDateTime orderTime;
 	private String beverage;
 	private String beverageOption;
 	private int beveragePrice;
 	
 	public OrderHistory() {}
 	
-	public OrderHistory(int id, LocalDateTime orderTime, 
-			String beverage, String beverageOption, int beveragePrice ) {
+	public OrderHistory(int id, String beverage, String beverageOption, int beveragePrice ) {
 		this.id = id;
-		this.orderTime = orderTime;
 		this.beverage = beverage;
 		this.beverageOption = beverageOption;
 		this.beveragePrice = beveragePrice;
@@ -41,14 +37,6 @@ public class OrderHistory {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public LocalDateTime getOrderTime() {
-		return orderTime;
-	}
-
-	public void setOrderTime(LocalDateTime orderTime) {
-		this.orderTime = orderTime;
 	}
 
 	public String getBeverage() {
