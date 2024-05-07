@@ -1,5 +1,6 @@
 package com.itwill.cafe.view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -39,11 +40,14 @@ public class CafeMain {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize() {		
 		frame = new JFrame();
-		frame.setSize(700, 500);
+		frame.setSize(500, 500);
 		frame.setLocationRelativeTo(null);
 		frame.getContentPane().setLayout(null);
+		
+		Color cafeMainColor = new Color(230, 230, 250);
+		frame.getContentPane().setBackground(cafeMainColor);
 		
 		
 		btnOrder = new JButton("주문하기");
@@ -56,7 +60,9 @@ public class CafeMain {
 		
 		
 		btnOrder.setFont(new Font("D2Coding", Font.PLAIN, 20));
-		btnOrder.setBounds(250, 300, 200, 50);
+		btnOrder.setBounds(150, 300, 200, 50);
+		btnOrder.setBackground(Color.WHITE);
+		btnOrder.setForeground(Color.BLACK);
 		frame.getContentPane().add(btnOrder);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Cafe");
