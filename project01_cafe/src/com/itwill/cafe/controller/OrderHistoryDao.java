@@ -55,19 +55,18 @@ public class OrderHistoryDao {
 	// ResultSet에서 각 컬럼의 값들을 읽어서 OrderHistory 타입의 객체를 생성하고 리턴. 
 	private OrderHistory makeOrderHistoryResultSet(ResultSet rs) throws SQLException {
 		int id = rs.getInt(COL_ID);
-		LocalDateTime orderTime = rs.getTimestamp(COL_ORDER_TIME).toLocalDateTime();	
 		String beverage = rs.getString(COL_BEVERAGE);
 		String beverageOption = rs.getString(COL_BEVERAGE_OPTION);
 		int beveragePrice = Integer.parseInt(rs.getString(COL_BEVERAGE_PRICE));
 		
-		OrderHistory hist = new OrderHistory(id, orderTime, beverage, beverageOption, beveragePrice);
+		OrderHistory hist = new OrderHistory(id, beverage, beverageOption, beveragePrice);
 		return hist;
 	}
 	
 // read() 메서드에서 사용할 SQL문장: select * from orders by orderTime
 	private static final String SQL_HISTORY_ALL = String.format(
-			"select * from %s order by %s", 
-			TBL_ORDERS, COL_ORDER_TIME);
+			"select * from %s", 
+			TBL_ORDERS);
 			
 	
 	/**
@@ -134,18 +133,18 @@ public class OrderHistoryDao {
 	
 // 삭제
 	// delete from orders where id = ?
-	private static final String SQL_DELETE = String.format(
+	private static final String SQL_DELETE_CHOICE = String.format(
 			"delete from %s where %s = ?", 
 			TBL_ORDERS, COL_ID);
 	
-	public int delete(int id) {
+	public int deleteChoice(int id) {
 		int result = 0;
 		
 		Connection conn = null;
 		PreparedStatement stmt = null;	
 		try {
 			conn = DriverManager.getConnection(URL, USER, PASSWORD);
-			stmt = conn.prepareStatement(SQL_DELETE);
+			stmt = conn.prepareStatement(SQL_DELETE_CHOICE);
 			stmt.setInt(1, id); 
 			result = stmt.executeUpdate();
 			
@@ -158,53 +157,27 @@ public class OrderHistoryDao {
 		return result;
 	}
 	
+	private static final String SQL_DELETE_ALL = String.format(
+			"delete from %s", 
+			TBL_ORDERS);
 	
-// 검색	
-	// 0: 날짜
-	// select * from order where orderTime like ? order by orderTime
-	private static final String SQL_SELECT_BY_ORDER_TIME = String.format(
-			"select * from %s where %s like ? order by %s", 
-			TBL_ORDERS, COL_ORDER_TIME, COL_ORDER_TIME);
-			
-	
-	// 1: 음료
-	// select * from orders where lower(beverage) like ? order by orderTime
-	private static final String SQL_SELECT_BY_BEVERAGE = String.format(
-			"select * from %s where lower(%s) like ? order by %s",
-			TBL_ORDERS, COL_BEVERAGE, COL_ORDER_TIME);
-	
-	public List<OrderHistory> search(int type, String keyword) {
-		List<OrderHistory> result = new ArrayList<>();
-			
+	public void deleteAll() {
+		int result = 0;
+		
 		Connection conn = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		String searchKeyword = "%" + keyword.toLowerCase() + "%"; // like 검색에서 사용할 파라미터.
+		PreparedStatement stmt = null;	
 		try {
 			conn = DriverManager.getConnection(URL, USER, PASSWORD);
-			switch (type) {
-				case 0: // 날짜
-					stmt = conn.prepareStatement(SQL_SELECT_BY_ORDER_TIME);
-					stmt.setString(1, searchKeyword);
-					break;
-				case 1: // 음료
-					stmt = conn.prepareStatement(SQL_SELECT_BY_BEVERAGE);
-					stmt.setString(1, searchKeyword);
-					break;
-			}
+			stmt = conn.prepareStatement(SQL_DELETE_ALL);
+			result = stmt.executeUpdate();
 			
-			rs = stmt.executeQuery();
-			while (rs.next()) {
-				OrderHistory hist = makeOrderHistoryResultSet(rs);
-				result.add(hist);
-			}
-					
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			closeResources(conn, stmt, rs);
+			closeResources(conn, stmt);
 		}
 		
-		return result;	
+		return;
 	}
+
 }
