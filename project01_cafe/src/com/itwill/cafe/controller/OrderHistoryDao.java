@@ -18,10 +18,7 @@ import oracle.jdbc.OracleDriver;
 import static com.itwill.cafe.OracleJdbc.*;
 import static com.itwill.cafe.model.OrderHistory.HistoryEntity.*;
 
-
 public class OrderHistoryDao {
-	
-	
 	
 	private static OrderHistoryDao instance = null;
 	
@@ -61,16 +58,17 @@ public class OrderHistoryDao {
 		LocalDateTime orderTime = rs.getTimestamp(COL_ORDER_TIME).toLocalDateTime();	
 		String beverage = rs.getString(COL_BEVERAGE);
 		String beverageOption = rs.getString(COL_BEVERAGE_OPTION);
-		String beveragePrice = rs.getString(COL_BEVERAGE_PRICE);
+		int beveragePrice = Integer.parseInt(rs.getString(COL_BEVERAGE_PRICE));
 		
 		OrderHistory hist = new OrderHistory(id, orderTime, beverage, beverageOption, beveragePrice);
 		return hist;
 	}
 	
-	// read() 메서드에서 사용할 SQL문장: select * from orders by orderTime
+// read() 메서드에서 사용할 SQL문장: select * from orders by orderTime
 	private static final String SQL_HISTORY_ALL = String.format(
 			"select * from %s order by %s", 
 			TBL_ORDERS, COL_ORDER_TIME);
+			
 	
 	/**
 	 * 데이터베이스의 ORDERS 테이블에서 모든 행을 검색해서 
@@ -95,7 +93,7 @@ public class OrderHistoryDao {
 				// OrderHistory hist = makeOrderHistoryResultSet(rs);
 				hist = makeOrderHistoryResultSet(rs);
 				result.add(hist);
-			}
+			}	
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -106,8 +104,8 @@ public class OrderHistoryDao {
 		return result;
 	}
 	
-	// save(OrderHistory hist) 메서드에서 사용할 SQL:
-	// insert into orders (beverage, beverageOption) values (?, ?)
+// save(OrderHistory hist) 메서드에서 사용할 SQL:
+// insert into orders (beverage, beverageOption) values (?, ?)
 	private static final String SQL_INSERT = String.format(
 			"insert into %s (%s, %s, %s) values (?, ?, ?)", 
 			TBL_ORDERS, COL_BEVERAGE, COL_BEVERAGE_OPTION, COL_BEVERAGE_PRICE);
@@ -122,7 +120,7 @@ public class OrderHistoryDao {
 			stmt = conn.prepareStatement(SQL_INSERT);
 			stmt.setString(1, hist.getBeverage());
 			stmt.setString(2, hist.getBeverageOption());
-			stmt.setString(3, hist.getBeveragePrice());
+			stmt.setInt(3, hist.getBeveragePrice());
 			result = stmt.executeUpdate();
 		
 		} catch (SQLException e) {
@@ -134,5 +132,79 @@ public class OrderHistoryDao {
 		return result;
 	}
 	
-
+// 삭제
+	// delete from orders where id = ?
+	private static final String SQL_DELETE = String.format(
+			"delete from %s where %s = ?", 
+			TBL_ORDERS, COL_ID);
+	
+	public int delete(int id) {
+		int result = 0;
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;	
+		try {
+			conn = DriverManager.getConnection(URL, USER, PASSWORD);
+			stmt = conn.prepareStatement(SQL_DELETE);
+			stmt.setInt(1, id); 
+			result = stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeResources(conn, stmt);
+		}
+		
+		return result;
+	}
+	
+	
+// 검색	
+	// 0: 날짜
+	// select * from order where orderTime like ? order by orderTime
+	private static final String SQL_SELECT_BY_ORDER_TIME = String.format(
+			"select * from %s where %s like ? order by %s", 
+			TBL_ORDERS, COL_ORDER_TIME, COL_ORDER_TIME);
+			
+	
+	// 1: 음료
+	// select * from orders where lower(beverage) like ? order by orderTime
+	private static final String SQL_SELECT_BY_BEVERAGE = String.format(
+			"select * from %s where lower(%s) like ? order by %s",
+			TBL_ORDERS, COL_BEVERAGE, COL_ORDER_TIME);
+	
+	public List<OrderHistory> search(int type, String keyword) {
+		List<OrderHistory> result = new ArrayList<>();
+			
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String searchKeyword = "%" + keyword.toLowerCase() + "%"; // like 검색에서 사용할 파라미터.
+		try {
+			conn = DriverManager.getConnection(URL, USER, PASSWORD);
+			switch (type) {
+				case 0: // 날짜
+					stmt = conn.prepareStatement(SQL_SELECT_BY_ORDER_TIME);
+					stmt.setString(1, searchKeyword);
+					break;
+				case 1: // 음료
+					stmt = conn.prepareStatement(SQL_SELECT_BY_BEVERAGE);
+					stmt.setString(1, searchKeyword);
+					break;
+			}
+			
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				OrderHistory hist = makeOrderHistoryResultSet(rs);
+				result.add(hist);
+			}
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeResources(conn, stmt, rs);
+		}
+		
+		return result;	
+	}
 }
