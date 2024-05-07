@@ -75,7 +75,7 @@ public class OrderCappFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x, y+150, 350, 230);
+		setBounds(x+150, y+150, 350, 230);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -142,7 +142,7 @@ public class OrderCappFrame extends JFrame {
 		btnCappOrder.setFont(new Font("D2Coding", Font.PLAIN, 15));
 		contentPane.add(btnCappOrder);
 		
-		lblCappPrice = new JLabel("\\4,000");
+		lblCappPrice = new JLabel(String.format("\\%,d", 4000));
 		lblCappPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 		lblCappPrice.setBounds(94, 11, 52, 15);
 		contentPane.add(lblCappPrice);
@@ -156,7 +156,8 @@ public class OrderCappFrame extends JFrame {
 	private void saveCappOrder() {
 		String beverage = lblCapp.getText();
 		String option = textCappOption.getText();
-		String price = lblCappPrice.getText();
+		String cappPriceText = lblCappPrice.getText().replaceAll("\\\\", "").replaceAll(",", "");
+		int price = Integer.parseInt(cappPriceText);
 		
 		OrderHistory hist = new OrderHistory(0, null, beverage, option, price);
 		int result = daohist.save(hist);
@@ -170,9 +171,9 @@ public class OrderCappFrame extends JFrame {
 		StringBuffer buffer = new StringBuffer();
 		
 		if (rbCappDouble.isSelected()) {
-			lblCappPrice.setText("\\4,500");
+			lblCappPrice.setText(String.format("\\%,d", 4500));
 		} else {
-			lblCappPrice.setText("\\4,000");
+			lblCappPrice.setText(String.format("\\%,d", 4000));
 		}
 		
 		if (rbCappSingle.isSelected()) {

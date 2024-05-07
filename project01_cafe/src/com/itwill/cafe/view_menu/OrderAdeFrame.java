@@ -75,7 +75,7 @@ public class OrderAdeFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x, y+350, 400, 250);
+		setBounds(x+250, y+90, 400, 250);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -89,7 +89,7 @@ public class OrderAdeFrame extends JFrame {
 		
 		lblAde = new JLabel("자몽에이드");
 		lblAde.setFont(new Font("D2Coding", Font.PLAIN, 17));
-		lblAde.setBounds(12, 10, 100, 20);
+		lblAde.setBounds(15, 20, 100, 20);
 		contentPane.add(lblAde);
 		
 		lblAdeOption = new JLabel("옵션");
@@ -140,9 +140,9 @@ public class OrderAdeFrame extends JFrame {
 		btnAdeOrder.setBounds(292, 134, 70, 30);
 		contentPane.add(btnAdeOrder);
 		
-		lblAdePrice = new JLabel("\\5,000");
+		lblAdePrice = new JLabel(String.format("\\%,d", 5000));
 		lblAdePrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
-		lblAdePrice.setBounds(117, 11, 52, 15);
+		lblAdePrice.setBounds(120, 20, 52, 15);
 		contentPane.add(lblAdePrice);
 		
 		lblAdeLarge = new JLabel("(+\\500)");
@@ -155,7 +155,8 @@ public class OrderAdeFrame extends JFrame {
 	private void saveAdeOrder() {
 		String beverage = lblAde.getText();
 		String option = textAdeOption.getText();
-		String price = lblAdePrice.getText();
+		String adePriceText = lblAdePrice.getText().replaceAll("\\\\", "").replaceAll(",", "");
+		int price = Integer.parseInt(adePriceText);
 		
 		OrderHistory hist = new OrderHistory(0, null, beverage, option, price);
 		int result = daohist.save(hist);
@@ -169,9 +170,9 @@ public class OrderAdeFrame extends JFrame {
 		StringBuffer buffer = new StringBuffer();
 		
 		if (rbAdeLarge.isSelected()) {
-			lblAdePrice.setText("\\5,500");
+			lblAdePrice.setText(String.format("\\%,d", 5500));
 		} else {
-			lblAdePrice.setText("\\5,000");
+			lblAdePrice.setText(String.format("\\%,d", 5000));
 		}
 		
 		if (rbAdeRegular.isSelected()) {

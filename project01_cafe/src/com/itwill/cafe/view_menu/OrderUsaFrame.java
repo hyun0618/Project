@@ -177,7 +177,7 @@ public class OrderUsaFrame extends JFrame {
 		textUsaOption = new JTextArea();
 		textUsaOption.setLineWrap(true);
 		textUsaOption.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		textUsaOption.setBounds(120, 190, 220, 50);
+		textUsaOption.setBounds(120, 210, 220, 30);
 		contentPane.add(textUsaOption);
 		
 		
@@ -198,22 +198,18 @@ public class OrderUsaFrame extends JFrame {
 		btnUsaOrder.setBounds(370, 210, 70, 30);
 		contentPane.add(btnUsaOrder);
 		
-		lblUsaPrice = new JLabel("\\3,000");
+		lblUsaPrice = new JLabel(String.format("\\%,d", 3000));
 		lblUsaPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 		lblUsaPrice.setBounds(124, 11, 52, 15);
 		contentPane.add(lblUsaPrice);
 		
-		
-		
-		
-		
-			
 	}
 	
 	private void saveUsaOrder() {
 			String beverage = lblUsa.getText();
 			String option = textUsaOption.getText();
-			String price = lblUsaPrice.getText();
+			String usaPriceText = lblUsaPrice.getText().replaceAll("\\\\", "").replaceAll(",", "");
+			int price = Integer.parseInt(usaPriceText);
 			
 			OrderHistory hist = new OrderHistory(0, null, beverage, option, price);
 			int result = daohist.save(hist);
@@ -228,13 +224,13 @@ public class OrderUsaFrame extends JFrame {
 		StringBuffer buffer = new StringBuffer();
 	
 		if (rbUsaLarge.isSelected() && rbUsaShotPlus.isSelected()) {
-			lblUsaPrice.setText("\\4,000");
+			lblUsaPrice.setText(String.format("\\%,d", 4000));
 		} else if (!rbUsaLarge.isSelected() && rbUsaShotPlus.isSelected()) {
-			lblUsaPrice.setText("\\3,500");
+			lblUsaPrice.setText(String.format("\\%,d", 3500));	
 		} else if (rbUsaLarge.isSelected() && !rbUsaShotPlus.isSelected()) {
-			lblUsaPrice.setText("\\3,500");
+			lblUsaPrice.setText(String.format("\\%,d", 3500));		
 		} else if (!(rbUsaLarge.isSelected() && rbUsaShotPlus.isSelected())) {
-			lblUsaPrice.setText("\\3,000");
+			lblUsaPrice.setText(String.format("\\%,d", 3000));	
 		}
 		
 		if (rbUsaHot.isSelected()) {

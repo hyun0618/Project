@@ -85,7 +85,7 @@ public class OrderLtFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x, y+90, 500, 290);
+		setBounds(x+20, y+90, 500, 290);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -211,7 +211,8 @@ public class OrderLtFrame extends JFrame {
 	private void saveLtOrder() {
 		String beverage = lblLt.getText();
 		String option = textLtOption.getText();
-		String price = lblLtPrice.getText();
+		String usaPriceText = lblLtPrice.getText().replaceAll("\\\\", "").replaceAll(",", "");
+		int price = Integer.parseInt(usaPriceText);
 		
 		OrderHistory hist = new OrderHistory(0, null, beverage, option, price);
 		int result = daohist.save(hist);
@@ -227,21 +228,21 @@ public class OrderLtFrame extends JFrame {
 		StringBuffer buffer = new StringBuffer();
 		
 		if (rbLtLarge.isSelected() && rbLtShotPlus.isSelected() && rbLtSoymilk.isSelected()) {
-			lblLtPrice.setText("\\5,500");
+			lblLtPrice.setText(String.format("\\%,d", 5500));
 		} else if (!rbLtLarge.isSelected() && rbLtShotPlus.isSelected() && rbLtSoymilk.isSelected()) {
-			lblLtPrice.setText("\\5,000");
+			lblLtPrice.setText(String.format("\\%,d", 5000));
 		} else if (rbLtLarge.isSelected() && !rbLtShotPlus.isSelected() && rbLtSoymilk.isSelected()) {
-			lblLtPrice.setText("\\5,000");
+			lblLtPrice.setText(String.format("\\%,d", 5000));
 		} else if (rbLtLarge.isSelected() && rbLtShotPlus.isSelected() && !rbLtSoymilk.isSelected()) {
-			lblLtPrice.setText("\\5,000");
+			lblLtPrice.setText(String.format("\\%,d", 5000));
 		} else if (!rbLtLarge.isSelected() && !rbLtShotPlus.isSelected() && rbLtSoymilk.isSelected()) {
-			lblLtPrice.setText("\\4,500");
+			lblLtPrice.setText(String.format("\\%,d", 4500));
 		} else if (rbLtLarge.isSelected() && !rbLtShotPlus.isSelected() && !rbLtSoymilk.isSelected()) {
-			lblLtPrice.setText("\\4,500");
+			lblLtPrice.setText(String.format("\\%,d", 4500));
 		} else if (!rbLtLarge.isSelected() && rbLtShotPlus.isSelected() && !rbLtSoymilk.isSelected()) {
-			lblLtPrice.setText("\\4,500");
+			lblLtPrice.setText(String.format("\\%,d", 4500));
 		} else if (!rbLtLarge.isSelected() && !rbLtShotPlus.isSelected() && !rbLtSoymilk.isSelected()) {
-			lblLtPrice.setText("\\4,000");
+			lblLtPrice.setText(String.format("\\%,d", 4000));
 		}
 		
 		if (rbLtHot.isSelected()) {

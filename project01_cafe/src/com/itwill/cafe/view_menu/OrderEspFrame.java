@@ -150,7 +150,7 @@ public class OrderEspFrame extends JFrame {
 		btnEspOrder.setBounds(267, 122, 70, 30);
 		contentPane.add(btnEspOrder);
 		
-		lblEspPrice = new JLabel("\\3,000");
+		lblEspPrice = new JLabel(String.format("\\%,d", 3000));
 		lblEspPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 		lblEspPrice.setBounds(128, 11, 52, 15);
 		contentPane.add(lblEspPrice);
@@ -162,7 +162,8 @@ public class OrderEspFrame extends JFrame {
 	private void saveEspOrder() {
 		String beverage = lblEsp.getText();
 		String option = textEspOption.getText();
-		String price = lblEspPrice.getText();
+		String espPriceText = lblEspPrice.getText().replaceAll("\\\\", "").replaceAll(",", "");
+		int price = Integer.parseInt(espPriceText);
 		
 		OrderHistory hist = new OrderHistory(0, null, beverage, option, price);
 		int result = daohist.save(hist);
@@ -176,9 +177,9 @@ public class OrderEspFrame extends JFrame {
 		StringBuffer buffer = new StringBuffer();
 		
 		if (rbEspDouble.isSelected()) {
-			lblEspPrice.setText("\\3,500");
+			lblEspPrice.setText(String.format("\\%,d", 3500));
 		} else {
-			lblEspPrice.setText("\\3,000");
+			lblEspPrice.setText(String.format("\\%,d", 3000));
 		}
 		
 		if (rbEspSingle.isSelected()) {

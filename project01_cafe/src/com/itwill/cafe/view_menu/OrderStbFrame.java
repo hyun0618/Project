@@ -70,7 +70,7 @@ public class OrderStbFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x, y+350, 400, 200);
+		setBounds(x+50, y+90, 400, 200);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -93,6 +93,7 @@ public class OrderStbFrame extends JFrame {
 		contentPane.add(lblStbOption);
 		
 		rbStbRegular = new JRadioButton("Regular");
+		rbStbRegular.setEnabled(false);
 		rbStbRegular.setSelected(true);
 		rbStbRegular.setFont(new Font("D2Coding", Font.PLAIN, 15));
 		rbStbRegular.setBounds(131, 50, 81, 20);
@@ -113,8 +114,9 @@ public class OrderStbFrame extends JFrame {
 		btnStbOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String beverage = lblStb.getText();
-				String option = textStbOption.getText();
-				String price = lblStbPrice.getText();
+				String option = textStbOption.getText();		
+				String stbPriceText = lblStbPrice.getText().replaceAll("\\\\", "").replaceAll(",", "");
+				int price = Integer.parseInt(stbPriceText);
 				
 				OrderHistory hist = new OrderHistory(0, null, beverage, option, price);
 				int result = daohist.save(hist);
@@ -128,7 +130,7 @@ public class OrderStbFrame extends JFrame {
 		btnStbOrder.setBounds(256, 114, 95, 23);
 		contentPane.add(btnStbOrder);
 		
-		lblStbPrice = new JLabel("\\5,000");
+		lblStbPrice = new JLabel(String.format("\\%,d", 5000));
 		lblStbPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 		lblStbPrice.setBounds(131, 11, 52, 15);
 		contentPane.add(lblStbPrice);
