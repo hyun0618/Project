@@ -75,7 +75,7 @@ public class OrderCappFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x, y+350, 400, 230);
+		setBounds(x, y+150, 350, 230);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);

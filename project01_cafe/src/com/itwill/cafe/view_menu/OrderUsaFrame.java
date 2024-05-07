@@ -95,7 +95,7 @@ public class OrderUsaFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x, y+310, 530, 280);
+		setBounds(x+200, y+70, 480, 300);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -120,48 +120,48 @@ public class OrderUsaFrame extends JFrame {
 		rbUsaHot = new JRadioButton("Hot");		
 		buttonGroupCold.add(rbUsaHot);
 		rbUsaHot.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbUsaHot.setBounds(121, 51, 100, 20);
+		rbUsaHot.setBounds(120, 50, 100, 20);
 		contentPane.add(rbUsaHot);
 	
 		rbUsaIce = new JRadioButton("Ice");		
 		buttonGroupCold.add(rbUsaIce);
 		rbUsaIce.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbUsaIce.setBounds(271, 51, 90, 20);
+		rbUsaIce.setBounds(260, 50, 80, 20);
 		contentPane.add(rbUsaIce);
 		
 		rbUsaRegular = new JRadioButton("Regular");	
 		buttonGroupSize.add(rbUsaRegular);
 		rbUsaRegular.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbUsaRegular.setBounds(121, 86, 100, 20);
+		rbUsaRegular.setBounds(120, 85, 100, 20);
 		contentPane.add(rbUsaRegular);
 		
 		rbUsaLarge = new JRadioButton("Large");		
 		buttonGroupSize.add(rbUsaLarge);
 		rbUsaLarge.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbUsaLarge.setBounds(271, 86, 70, 20);
+		rbUsaLarge.setBounds(260, 85, 80, 20);
 		contentPane.add(rbUsaLarge);
 		
 		lblUsaLarge = new JLabel("(+\\500)");
 		lblUsaLarge.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		lblUsaLarge.setBounds(341, 86, 50, 15);
+		lblUsaLarge.setBounds(280, 110, 50, 15);
 		contentPane.add(lblUsaLarge);
 		
 		
 		rbUsaShotPlus = new JRadioButton("샷 추가");
 		
 		rbUsaShotPlus.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbUsaShotPlus.setBounds(121, 116, 80, 20);
+		rbUsaShotPlus.setBounds(120, 140, 80, 20);
 		contentPane.add(rbUsaShotPlus);
 		
 		lblShotPlus = new JLabel("(+\\500)");
 		lblShotPlus.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		lblShotPlus.setBounds(201, 116, 50, 15);
+		lblShotPlus.setBounds(147, 163, 50, 15);
 		contentPane.add(lblShotPlus);
 		
 		rbUsaShotMinus = new JRadioButton("샷 1/2");		
 		
 		rbUsaShotMinus.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbUsaShotMinus.setBounds(271, 116, 90, 20);
+		rbUsaShotMinus.setBounds(260, 140, 80, 20);
 		contentPane.add(rbUsaShotMinus);
 		
 		btnUsaChoice = new JButton("선택");
@@ -171,13 +171,13 @@ public class OrderUsaFrame extends JFrame {
 			}
 		});
 		btnUsaChoice.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		btnUsaChoice.setBounds(406, 111, 70, 30);
+		btnUsaChoice.setBounds(369, 148, 70, 30);
 		contentPane.add(btnUsaChoice);
 		
 		textUsaOption = new JTextArea();
 		textUsaOption.setLineWrap(true);
 		textUsaOption.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		textUsaOption.setBounds(121, 161, 250, 50);
+		textUsaOption.setBounds(120, 190, 220, 50);
 		contentPane.add(textUsaOption);
 		
 		
@@ -195,7 +195,7 @@ public class OrderUsaFrame extends JFrame {
 		});
 		
 		btnUsaOrder.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		btnUsaOrder.setBounds(406, 181, 70, 30);
+		btnUsaOrder.setBounds(370, 210, 70, 30);
 		contentPane.add(btnUsaOrder);
 		
 		lblUsaPrice = new JLabel("\\3,000");

@@ -85,7 +85,7 @@ public class OrderLtFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x, y+310, 500, 290);
+		setBounds(x, y+90, 500, 290);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);

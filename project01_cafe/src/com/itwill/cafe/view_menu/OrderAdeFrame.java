@@ -170,6 +170,8 @@ public class OrderAdeFrame extends JFrame {
 		
 		if (rbAdeLarge.isSelected()) {
 			lblAdePrice.setText("\\5,500");
+		} else {
+			lblAdePrice.setText("\\5,000");
 		}
 		
 		if (rbAdeRegular.isSelected()) {

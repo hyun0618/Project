@@ -80,7 +80,7 @@ public class OrderEspFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x, y+330, 390, 230);
+		setBounds(x+250, y+150, 390, 230);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
