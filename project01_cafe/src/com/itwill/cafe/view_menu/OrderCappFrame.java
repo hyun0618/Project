@@ -29,7 +29,6 @@ public class OrderCappFrame extends JFrame {
 	
 	private JPanel contentPane;
 	private JLabel lblCapp;
-	private JLabel lblOption;
 	private JRadioButton rbCappSingle;
 	private JRadioButton rbCappDouble;
 	private JButton btnCappChoice;
@@ -75,7 +74,7 @@ public class OrderCappFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x+150, y+150, 350, 230);
+		setBounds(x+80, y+100, 350, 300);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -88,25 +87,20 @@ public class OrderCappFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		lblCapp = new JLabel("카푸치노");
-		lblCapp.setBounds(12, 10, 70, 20);
-		lblCapp.setFont(new Font("D2Coding", Font.PLAIN, 17));
+		lblCapp.setBounds(30, 40, 70, 20);
+		lblCapp.setFont(new Font("D2Coding", Font.PLAIN, 15));
 		contentPane.add(lblCapp);
-		
-		lblOption = new JLabel("옵션");
-		lblOption.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		lblOption.setBounds(44, 58, 38, 15);
-		contentPane.add(lblOption);
 		
 		rbCappSingle = new JRadioButton("싱글");
 		buttonGroupCapp.add(rbCappSingle);
-		rbCappSingle.setBounds(92, 55, 60, 20);
-		rbCappSingle.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		rbCappSingle.setBounds(70, 80, 60, 20);
+		rbCappSingle.setFont(new Font("D2Coding", Font.PLAIN, 13));
 		contentPane.add(rbCappSingle);
 		
 		rbCappDouble = new JRadioButton("더블");
 		buttonGroupCapp.add(rbCappDouble);
-		rbCappDouble.setBounds(156, 55, 60, 20);
-		rbCappDouble.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		rbCappDouble.setBounds(150, 80, 60, 20);
+		rbCappDouble.setFont(new Font("D2Coding", Font.PLAIN, 13));
 		contentPane.add(rbCappDouble);
 		
 		btnCappChoice = new JButton("선택");
@@ -115,17 +109,17 @@ public class OrderCappFrame extends JFrame {
 				handleCappClick();
 			}
 		});
-		btnCappChoice.setBounds(246, 72, 70, 30);
-		btnCappChoice.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		btnCappChoice.setBounds(246, 122, 70, 30);
+		btnCappChoice.setFont(new Font("D2Coding", Font.PLAIN, 13));
 		contentPane.add(btnCappChoice);
 		
 		textCappOption = new JTextArea();
 		textCappOption.setLineWrap(true);
 		textCappOption.setBounds(92, 126, 124, 30);
-		textCappOption.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		textCappOption.setFont(new Font("D2Coding", Font.PLAIN, 13));
 		contentPane.add(textCappOption);
 		
-		btnCappOrder = new JButton("주문");
+		btnCappOrder = new JButton("담기");
 		btnCappOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String cappOption = textCappOption.getText().trim();
@@ -138,18 +132,18 @@ public class OrderCappFrame extends JFrame {
 			}
 			
 		});
-		btnCappOrder.setBounds(246, 126, 70, 30);
-		btnCappOrder.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		btnCappOrder.setBounds(246, 173, 70, 30);
+		btnCappOrder.setFont(new Font("D2Coding", Font.PLAIN, 13));
 		contentPane.add(btnCappOrder);
 		
 		lblCappPrice = new JLabel(String.format("\\%,d", 4000));
-		lblCappPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
-		lblCappPrice.setBounds(94, 11, 52, 15);
+		lblCappPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		lblCappPrice.setBounds(166, 178, 52, 15);
 		contentPane.add(lblCappPrice);
 		
 		lblEspDouble = new JLabel("(+\\500)");
 		lblEspDouble.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		lblEspDouble.setBounds(166, 81, 50, 15);
+		lblEspDouble.setBounds(210, 83, 50, 15);
 		contentPane.add(lblEspDouble);
 	}
 	
@@ -159,7 +153,7 @@ public class OrderCappFrame extends JFrame {
 		String cappPriceText = lblCappPrice.getText().replaceAll("\\\\", "").replaceAll(",", "");
 		int price = Integer.parseInt(cappPriceText);
 		
-		OrderHistory hist = new OrderHistory(0, null, beverage, option, price);
+		OrderHistory hist = new OrderHistory(0, beverage, option, price);
 		int result = daohist.save(hist);
 		if (result == 1) {		
 			dispose();

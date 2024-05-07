@@ -39,6 +39,7 @@ public class OrderEspFrame extends JFrame {
 	private JButton btnEspOrder;
 	private JLabel lblEspPrice;
 	private JLabel lblEspDouble;
+	private JLabel lblPayment;
 	
 	
 	/**
@@ -80,7 +81,7 @@ public class OrderEspFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x+250, y+150, 390, 230);
+		setBounds(x+250, y+150, 390, 300);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -94,7 +95,7 @@ public class OrderEspFrame extends JFrame {
 		
 		lblEsp = new JLabel("에스프레소");
 		lblEsp.setFont(new Font("D2Coding", Font.PLAIN, 17));
-		lblEsp.setBounds(12, 10, 92, 20);
+		lblEsp.setBounds(20, 20, 92, 20);
 		contentPane.add(lblEsp);
 		
 		lblOption = new JLabel("옵션");
@@ -116,7 +117,7 @@ public class OrderEspFrame extends JFrame {
 		
 		lblEspDouble = new JLabel("(+\\500)");
 		lblEspDouble.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		lblEspDouble.setBounds(195, 80, 50, 15);
+		lblEspDouble.setBounds(195, 75, 50, 15);
 		contentPane.add(lblEspDouble);
 		
 		btnEspChoice = new JButton("선택");
@@ -126,15 +127,15 @@ public class OrderEspFrame extends JFrame {
 			}
 		});
 		btnEspChoice.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		btnEspChoice.setBounds(267, 57, 70, 30);
+		btnEspChoice.setBounds(270, 110, 70, 30);
 		contentPane.add(btnEspChoice);
 		
 		textEspOption = new JTextArea();
 		textEspOption.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		textEspOption.setBounds(120, 126, 125, 30);
+		textEspOption.setBounds(120, 109, 125, 30);
 		contentPane.add(textEspOption);
 		
-		btnEspOrder = new JButton("주문");
+		btnEspOrder = new JButton("담기");
 		btnEspOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String espOption = textEspOption.getText().trim();
@@ -147,13 +148,18 @@ public class OrderEspFrame extends JFrame {
 			}
 		});
 		btnEspOrder.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		btnEspOrder.setBounds(267, 122, 70, 30);
+		btnEspOrder.setBounds(270, 166, 70, 30);
 		contentPane.add(btnEspOrder);
 		
 		lblEspPrice = new JLabel(String.format("\\%,d", 3000));
 		lblEspPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
-		lblEspPrice.setBounds(128, 11, 52, 15);
+		lblEspPrice.setBounds(193, 171, 52, 15);
 		contentPane.add(lblEspPrice);
+		
+		lblPayment = new JLabel("금액");
+		lblPayment.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		lblPayment.setBounds(62, 174, 42, 15);
+		contentPane.add(lblPayment);
 		
 		
 		
@@ -165,7 +171,7 @@ public class OrderEspFrame extends JFrame {
 		String espPriceText = lblEspPrice.getText().replaceAll("\\\\", "").replaceAll(",", "");
 		int price = Integer.parseInt(espPriceText);
 		
-		OrderHistory hist = new OrderHistory(0, null, beverage, option, price);
+		OrderHistory hist = new OrderHistory(0, beverage, option, price);
 		int result = daohist.save(hist);
 		if (result == 1) {
 			

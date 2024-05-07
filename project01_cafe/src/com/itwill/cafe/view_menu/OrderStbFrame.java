@@ -118,7 +118,7 @@ public class OrderStbFrame extends JFrame {
 				String stbPriceText = lblStbPrice.getText().replaceAll("\\\\", "").replaceAll(",", "");
 				int price = Integer.parseInt(stbPriceText);
 				
-				OrderHistory hist = new OrderHistory(0, null, beverage, option, price);
+				OrderHistory hist = new OrderHistory(0, beverage, option, price);
 				int result = daohist.save(hist);
 				if (result == 1) {
 					

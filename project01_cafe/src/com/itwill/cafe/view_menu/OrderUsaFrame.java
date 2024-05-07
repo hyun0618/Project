@@ -52,7 +52,6 @@ public class OrderUsaFrame extends JFrame {
 	private JTextArea textUsaOption;
 	private JButton btnUsaChoice;
 	private JLabel lblUsa;
-	private JLabel lblOption;
 	private JTextField textUsaPrice;
 	private JLabel lblUsaPrice;
 	private JLabel lblShotPlus;
@@ -95,7 +94,7 @@ public class OrderUsaFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x+200, y+70, 480, 300);
+		setBounds(x+70, y+70, 400, 350);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -108,60 +107,55 @@ public class OrderUsaFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		lblUsa = new JLabel("아메리카노");
-		lblUsa.setFont(new Font("D2Coding", Font.PLAIN, 17));
-		lblUsa.setBounds(12, 10, 90, 20);
+		lblUsa.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		lblUsa.setBounds(30, 30, 90, 20);
 		contentPane.add(lblUsa);
-		
-		lblOption = new JLabel("옵션");
-		lblOption.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		lblOption.setBounds(65, 54, 37, 15);
-		contentPane.add(lblOption);
 				
 		rbUsaHot = new JRadioButton("Hot");		
 		buttonGroupCold.add(rbUsaHot);
-		rbUsaHot.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbUsaHot.setBounds(120, 50, 100, 20);
+		rbUsaHot.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		rbUsaHot.setBounds(50, 70, 100, 20);
 		contentPane.add(rbUsaHot);
 	
 		rbUsaIce = new JRadioButton("Ice");		
 		buttonGroupCold.add(rbUsaIce);
-		rbUsaIce.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbUsaIce.setBounds(260, 50, 80, 20);
+		rbUsaIce.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		rbUsaIce.setBounds(200, 70, 80, 20);
 		contentPane.add(rbUsaIce);
 		
 		rbUsaRegular = new JRadioButton("Regular");	
 		buttonGroupSize.add(rbUsaRegular);
-		rbUsaRegular.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbUsaRegular.setBounds(120, 85, 100, 20);
+		rbUsaRegular.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		rbUsaRegular.setBounds(50, 100, 100, 20);
 		contentPane.add(rbUsaRegular);
 		
 		rbUsaLarge = new JRadioButton("Large");		
 		buttonGroupSize.add(rbUsaLarge);
-		rbUsaLarge.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbUsaLarge.setBounds(260, 85, 80, 20);
+		rbUsaLarge.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		rbUsaLarge.setBounds(200, 100, 60, 20);
 		contentPane.add(rbUsaLarge);
 		
 		lblUsaLarge = new JLabel("(+\\500)");
 		lblUsaLarge.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		lblUsaLarge.setBounds(280, 110, 50, 15);
+		lblUsaLarge.setBounds(271, 100, 50, 15);
 		contentPane.add(lblUsaLarge);
 		
 		
 		rbUsaShotPlus = new JRadioButton("샷 추가");
 		
-		rbUsaShotPlus.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbUsaShotPlus.setBounds(120, 140, 80, 20);
+		rbUsaShotPlus.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		rbUsaShotPlus.setBounds(50, 130, 75, 20);
 		contentPane.add(rbUsaShotPlus);
 		
 		lblShotPlus = new JLabel("(+\\500)");
 		lblShotPlus.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		lblShotPlus.setBounds(147, 163, 50, 15);
+		lblShotPlus.setBounds(130, 130, 50, 15);
 		contentPane.add(lblShotPlus);
 		
 		rbUsaShotMinus = new JRadioButton("샷 1/2");		
 		
-		rbUsaShotMinus.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbUsaShotMinus.setBounds(260, 140, 80, 20);
+		rbUsaShotMinus.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		rbUsaShotMinus.setBounds(200, 130, 80, 20);
 		contentPane.add(rbUsaShotMinus);
 		
 		btnUsaChoice = new JButton("선택");
@@ -170,18 +164,18 @@ public class OrderUsaFrame extends JFrame {
 				handleUsaClick();
 			}
 		});
-		btnUsaChoice.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		btnUsaChoice.setBounds(369, 148, 70, 30);
+		btnUsaChoice.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		btnUsaChoice.setBounds(280, 175, 70, 30);
 		contentPane.add(btnUsaChoice);
 		
 		textUsaOption = new JTextArea();
 		textUsaOption.setLineWrap(true);
-		textUsaOption.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		textUsaOption.setBounds(120, 210, 220, 30);
+		textUsaOption.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		textUsaOption.setBounds(65, 178, 195, 30);
 		contentPane.add(textUsaOption);
 		
 		
-		btnUsaOrder = new JButton("주문");
+		btnUsaOrder = new JButton("담기");
 		btnUsaOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String usaOption = textUsaOption.getText().trim();
@@ -194,13 +188,13 @@ public class OrderUsaFrame extends JFrame {
 			}
 		});
 		
-		btnUsaOrder.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		btnUsaOrder.setBounds(370, 210, 70, 30);
+		btnUsaOrder.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		btnUsaOrder.setBounds(280, 225, 70, 30);
 		contentPane.add(btnUsaOrder);
 		
 		lblUsaPrice = new JLabel(String.format("\\%,d", 3000));
-		lblUsaPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
-		lblUsaPrice.setBounds(124, 11, 52, 15);
+		lblUsaPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		lblUsaPrice.setBounds(210, 230, 52, 15);
 		contentPane.add(lblUsaPrice);
 		
 	}
@@ -211,7 +205,7 @@ public class OrderUsaFrame extends JFrame {
 			String usaPriceText = lblUsaPrice.getText().replaceAll("\\\\", "").replaceAll(",", "");
 			int price = Integer.parseInt(usaPriceText);
 			
-			OrderHistory hist = new OrderHistory(0, null, beverage, option, price);
+			OrderHistory hist = new OrderHistory(0, beverage, option, price);
 			int result = daohist.save(hist);
 			if (result == 1) {
 				app.usaOrderSuccess();

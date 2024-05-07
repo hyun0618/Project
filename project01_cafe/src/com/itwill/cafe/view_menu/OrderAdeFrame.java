@@ -158,7 +158,7 @@ public class OrderAdeFrame extends JFrame {
 		String adePriceText = lblAdePrice.getText().replaceAll("\\\\", "").replaceAll(",", "");
 		int price = Integer.parseInt(adePriceText);
 		
-		OrderHistory hist = new OrderHistory(0, null, beverage, option, price);
+		OrderHistory hist = new OrderHistory(0, beverage, option, price);
 		int result = daohist.save(hist);
 		if (result == 1) {
 			

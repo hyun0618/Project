@@ -172,7 +172,7 @@ public class OrderChocoFrame extends JFrame {
 		String chocoPriceText = lblChocoPrice.getText().replaceAll("\\\\", "").replaceAll(",", "");
 		int price = Integer.parseInt(chocoPriceText);
 		
-		OrderHistory hist = new OrderHistory(0, null, beverage, option, price);
+		OrderHistory hist = new OrderHistory(0, beverage, option, price);
 		int result = daohist.save(hist);
 		if (result == 1) {
 			
