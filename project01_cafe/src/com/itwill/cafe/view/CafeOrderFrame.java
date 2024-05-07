@@ -125,7 +125,7 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x, y, 700, 600);
+		setBounds(x, y, 700, 500);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -176,10 +176,25 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 		textEspPrice.setBounds(35, 210, 130, 20);
 		coffeePanel.add(textEspPrice);
 		
+		btnLt = new JButton("카페라떼");
+		btnLt.addActionListener((e) -> orderLt());
+		btnLt.setFont(new Font("D2Coding", Font.PLAIN, 17));
+		btnLt.setBounds(500, 30, 120, 30);
+		coffeePanel.add(btnLt);
+		
+		textLtPrice = new JTextField();
+		textLtPrice.setHorizontalAlignment(SwingConstants.CENTER);
+		textLtPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+		textLtPrice.setText("\\4,000");
+		textLtPrice.setEditable(false);
+		textLtPrice.setBounds(500, 70, 120, 20);
+		coffeePanel.add(textLtPrice);
+		textLtPrice.setColumns(10);
+		
 		btnCapp = new JButton("카푸치노");
 		btnCapp.addActionListener((e) -> orderCapp());
 		btnCapp.setFont(new Font("D2Coding", Font.PLAIN, 17));
-		btnCapp.setBounds(350, 170, 120, 30);
+		btnCapp.setBounds(500, 170, 120, 30);
 		coffeePanel.add(btnCapp);
 		
 		textCappPrice = new JTextField();
@@ -188,23 +203,8 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 		textCappPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 		textCappPrice.setEditable(false);
 		textCappPrice.setColumns(10);
-		textCappPrice.setBounds(350, 210, 120, 20);
+		textCappPrice.setBounds(500, 210, 120, 20);
 		coffeePanel.add(textCappPrice);
-		
-		btnLt = new JButton("카페라떼");
-		btnLt.addActionListener((e) -> orderLt());
-		btnLt.setFont(new Font("D2Coding", Font.PLAIN, 17));
-		btnLt.setBounds(350, 30, 120, 30);
-		coffeePanel.add(btnLt);
-		
-		textLtPrice = new JTextField();
-		textLtPrice.setHorizontalAlignment(SwingConstants.CENTER);
-		textLtPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
-		textLtPrice.setText("\\4,000");
-		textLtPrice.setEditable(false);
-		textLtPrice.setBounds(350, 70, 120, 20);
-		coffeePanel.add(textLtPrice);
-		textLtPrice.setColumns(10);
 		
 		nonCoffee = new JPanel();
 		tabbedPane.addTab("nonCoffee", null, nonCoffee, null);

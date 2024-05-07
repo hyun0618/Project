@@ -41,7 +41,7 @@ public class CafeMain {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setSize(700, 600);
+		frame.setSize(700, 500);
 		frame.setLocationRelativeTo(null);
 		frame.getContentPane().setLayout(null);
 		
@@ -56,7 +56,7 @@ public class CafeMain {
 		
 		
 		btnOrder.setFont(new Font("D2Coding", Font.PLAIN, 20));
-		btnOrder.setBounds(250, 400, 200, 50);
+		btnOrder.setBounds(250, 300, 200, 50);
 		frame.getContentPane().add(btnOrder);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Cafe");
