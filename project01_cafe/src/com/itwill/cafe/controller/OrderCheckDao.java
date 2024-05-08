@@ -16,6 +16,8 @@ import oracle.jdbc.OracleDriver;
 
 import static com.itwill.cafe.OracleJdbc.*;
 import static com.itwill.cafe.model.OrderCheck.CheckEntity.*;
+import static com.itwill.cafe.model.OrderHistory.HistoryEntity.COL_ID;
+import static com.itwill.cafe.model.OrderHistory.HistoryEntity.TBL_ORDERS;
 
 public class OrderCheckDao {
 	
@@ -63,6 +65,30 @@ public class OrderCheckDao {
 		return check;
 	}
 	
+// deleteOrder()
+	private static final String SQL_DELETE_ORDER = String.format(
+			"delete from %s where %s = ?", 
+			TBL_ORDER_CHECK, COL_ID);
+	
+	public int deleteOrder(int id) {
+		int result = 0;
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;	
+		try {
+			conn = DriverManager.getConnection(URL, USER, PASSWORD);
+			stmt = conn.prepareStatement(SQL_DELETE_ORDER);
+			stmt.setInt(1, id);
+			result = stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeResources(conn, stmt);
+		}
+		
+		return result;
+	}
 	
 	
 // search()

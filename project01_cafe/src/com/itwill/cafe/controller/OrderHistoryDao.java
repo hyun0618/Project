@@ -131,7 +131,7 @@ public class OrderHistoryDao {
 		return result;
 	}
 	
-// 삭제
+// 삭제: deleteAll(), deleteChoice()
 	// delete from orders where id = ?
 	private static final String SQL_DELETE_CHOICE = String.format(
 			"delete from %s where %s = ?", 
