@@ -31,7 +31,6 @@ public class OrderAdeFrame extends JFrame {
 	private JPanel contentPane;
 	private JLabel lblAde;
 	private JRadioButton rbAdeRegular;
-	private JLabel lblAdeOption;
 	private JRadioButton rbAdeLarge;
 	private JButton btnAdeChoice;
 	private JTextArea textAdeOption;
@@ -75,7 +74,7 @@ public class OrderAdeFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x+250, y+90, 400, 250);
+		setBounds(x, y+100, 400, 300);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -88,25 +87,20 @@ public class OrderAdeFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		lblAde = new JLabel("자몽에이드");
-		lblAde.setFont(new Font("D2Coding", Font.PLAIN, 17));
-		lblAde.setBounds(15, 20, 100, 20);
+		lblAde.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		lblAde.setBounds(30, 30, 100, 20);
 		contentPane.add(lblAde);
-		
-		lblAdeOption = new JLabel("옵션");
-		lblAdeOption.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		lblAdeOption.setBounds(62, 58, 37, 15);
-		contentPane.add(lblAdeOption);
 		
 		rbAdeRegular = new JRadioButton("Regular");
 		buttonGroupAde.add(rbAdeRegular);
-		rbAdeRegular.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbAdeRegular.setBounds(110, 55, 90, 20);
+		rbAdeRegular.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		rbAdeRegular.setBounds(50, 70, 90, 20);
 		contentPane.add(rbAdeRegular);
 		
 		rbAdeLarge = new JRadioButton("Large");
 		buttonGroupAde.add(rbAdeLarge);
-		rbAdeLarge.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbAdeLarge.setBounds(204, 55, 70, 20);
+		rbAdeLarge.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		rbAdeLarge.setBounds(150, 70, 70, 20);
 		contentPane.add(rbAdeLarge);
 		
 		btnAdeChoice = new JButton("선택");
@@ -115,16 +109,16 @@ public class OrderAdeFrame extends JFrame {
 				handleAdeClick();
 			}
 		});
-		btnAdeChoice.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		btnAdeChoice.setBounds(292, 50, 70, 30);
+		btnAdeChoice.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		btnAdeChoice.setBounds(290, 120, 70, 30);
 		contentPane.add(btnAdeChoice);
 		
 		textAdeOption = new JTextArea();
-		textAdeOption.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		textAdeOption.setBounds(110, 124, 159, 40);
+		textAdeOption.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		textAdeOption.setBounds(110, 110, 159, 40);
 		contentPane.add(textAdeOption);
 		
-		btnAdeOrder = new JButton("주문");
+		btnAdeOrder = new JButton("담기");
 		btnAdeOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String adeOption = textAdeOption.getText().trim();
@@ -136,18 +130,18 @@ public class OrderAdeFrame extends JFrame {
 				}
 			}
 		});
-		btnAdeOrder.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		btnAdeOrder.setBounds(292, 134, 70, 30);
+		btnAdeOrder.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		btnAdeOrder.setBounds(290, 170, 70, 30);
 		contentPane.add(btnAdeOrder);
 		
 		lblAdePrice = new JLabel(String.format("\\%,d", 5000));
-		lblAdePrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
-		lblAdePrice.setBounds(120, 20, 52, 15);
+		lblAdePrice.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		lblAdePrice.setBounds(215, 175, 52, 15);
 		contentPane.add(lblAdePrice);
 		
 		lblAdeLarge = new JLabel("(+\\500)");
 		lblAdeLarge.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		lblAdeLarge.setBounds(214, 81, 50, 15);
+		lblAdeLarge.setBounds(225, 71, 50, 15);
 		contentPane.add(lblAdeLarge);
 	
 	}

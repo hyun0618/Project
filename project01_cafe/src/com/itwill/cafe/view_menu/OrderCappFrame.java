@@ -74,7 +74,7 @@ public class OrderCappFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x+80, y+100, 350, 300);
+		setBounds(x, y+100, 400, 300);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -87,19 +87,19 @@ public class OrderCappFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		lblCapp = new JLabel("카푸치노");
-		lblCapp.setBounds(30, 40, 70, 20);
+		lblCapp.setBounds(30, 30, 70, 20);
 		lblCapp.setFont(new Font("D2Coding", Font.PLAIN, 15));
 		contentPane.add(lblCapp);
 		
 		rbCappSingle = new JRadioButton("싱글");
 		buttonGroupCapp.add(rbCappSingle);
-		rbCappSingle.setBounds(70, 80, 60, 20);
+		rbCappSingle.setBounds(50, 70, 60, 20);
 		rbCappSingle.setFont(new Font("D2Coding", Font.PLAIN, 13));
 		contentPane.add(rbCappSingle);
 		
 		rbCappDouble = new JRadioButton("더블");
 		buttonGroupCapp.add(rbCappDouble);
-		rbCappDouble.setBounds(150, 80, 60, 20);
+		rbCappDouble.setBounds(130, 70, 60, 20);
 		rbCappDouble.setFont(new Font("D2Coding", Font.PLAIN, 13));
 		contentPane.add(rbCappDouble);
 		
@@ -109,13 +109,13 @@ public class OrderCappFrame extends JFrame {
 				handleCappClick();
 			}
 		});
-		btnCappChoice.setBounds(246, 122, 70, 30);
+		btnCappChoice.setBounds(220, 110, 70, 30);
 		btnCappChoice.setFont(new Font("D2Coding", Font.PLAIN, 13));
 		contentPane.add(btnCappChoice);
 		
 		textCappOption = new JTextArea();
 		textCappOption.setLineWrap(true);
-		textCappOption.setBounds(92, 126, 124, 30);
+		textCappOption.setBounds(70, 110, 124, 30);
 		textCappOption.setFont(new Font("D2Coding", Font.PLAIN, 13));
 		contentPane.add(textCappOption);
 		
@@ -132,18 +132,18 @@ public class OrderCappFrame extends JFrame {
 			}
 			
 		});
-		btnCappOrder.setBounds(246, 173, 70, 30);
+		btnCappOrder.setBounds(220, 156, 70, 30);
 		btnCappOrder.setFont(new Font("D2Coding", Font.PLAIN, 13));
 		contentPane.add(btnCappOrder);
 		
 		lblCappPrice = new JLabel(String.format("\\%,d", 4000));
 		lblCappPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		lblCappPrice.setBounds(166, 178, 52, 15);
+		lblCappPrice.setBounds(142, 162, 52, 15);
 		contentPane.add(lblCappPrice);
 		
 		lblEspDouble = new JLabel("(+\\500)");
 		lblEspDouble.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		lblEspDouble.setBounds(210, 83, 50, 15);
+		lblEspDouble.setBounds(190, 72, 50, 15);
 		contentPane.add(lblEspDouble);
 	}
 	

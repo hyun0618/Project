@@ -94,7 +94,7 @@ public class OrderUsaFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x+70, y+70, 400, 350);
+		setBounds(x, y+100, 400, 300);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -165,15 +165,19 @@ public class OrderUsaFrame extends JFrame {
 			}
 		});
 		btnUsaChoice.setFont(new Font("D2Coding", Font.PLAIN, 13));
-		btnUsaChoice.setBounds(280, 175, 70, 30);
+		btnUsaChoice.setBounds(280, 170, 70, 30);
 		contentPane.add(btnUsaChoice);
 		
 		textUsaOption = new JTextArea();
 		textUsaOption.setLineWrap(true);
 		textUsaOption.setFont(new Font("D2Coding", Font.PLAIN, 13));
-		textUsaOption.setBounds(65, 178, 195, 30);
+		textUsaOption.setBounds(65, 170, 195, 30);
 		contentPane.add(textUsaOption);
 		
+		lblUsaPrice = new JLabel(String.format("\\%,d", 3000));
+		lblUsaPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		lblUsaPrice.setBounds(210, 220, 52, 15);
+		contentPane.add(lblUsaPrice);
 		
 		btnUsaOrder = new JButton("담기");
 		btnUsaOrder.addActionListener(new ActionListener() {
@@ -189,14 +193,9 @@ public class OrderUsaFrame extends JFrame {
 		});
 		
 		btnUsaOrder.setFont(new Font("D2Coding", Font.PLAIN, 13));
-		btnUsaOrder.setBounds(280, 225, 70, 30);
+		btnUsaOrder.setBounds(280, 215, 70, 30);
 		contentPane.add(btnUsaOrder);
-		
-		lblUsaPrice = new JLabel(String.format("\\%,d", 3000));
-		lblUsaPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		lblUsaPrice.setBounds(210, 230, 52, 15);
-		contentPane.add(lblUsaPrice);
-		
+
 	}
 	
 	private void saveUsaOrder() {

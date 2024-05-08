@@ -28,7 +28,6 @@ public class OrderStbFrame extends JFrame {
 	
 	private JPanel contentPane;
 	private JLabel lblStb;
-	private JLabel lblStbOption;
 	private JRadioButton rbStbRegular;
 	private JLabel lblStbExplain;
 	private JTextArea textStbOption;
@@ -70,7 +69,7 @@ public class OrderStbFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x+50, y+90, 400, 200);
+		setBounds(x, y+100, 400, 300);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -83,34 +82,29 @@ public class OrderStbFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		lblStb = new JLabel("딸기스무디");
-		lblStb.setFont(new Font("D2Coding", Font.PLAIN, 17));
-		lblStb.setBounds(12, 10, 100, 20);
+		lblStb.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		lblStb.setBounds(30, 30, 100, 20);
 		contentPane.add(lblStb);
-		
-		lblStbOption = new JLabel("옵션");
-		lblStbOption.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		lblStbOption.setBounds(73, 53, 39, 15);
-		contentPane.add(lblStbOption);
 		
 		rbStbRegular = new JRadioButton("Regular");
 		rbStbRegular.setEnabled(false);
 		rbStbRegular.setSelected(true);
-		rbStbRegular.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbStbRegular.setBounds(131, 50, 81, 20);
+		rbStbRegular.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		rbStbRegular.setBounds(50, 60, 81, 20);
 		contentPane.add(rbStbRegular);
 		
 		textStbOption = new JTextArea();
-		textStbOption.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		textStbOption.setBounds(131, 104, 100, 32);
+		textStbOption.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		textStbOption.setBounds(115, 90, 100, 30);
 		contentPane.add(textStbOption);
 		textStbOption.setText(rbStbRegular.getText());
 		
 		lblStbExplain = new JLabel("(단일 사이즈)");
-		lblStbExplain.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		lblStbExplain.setBounds(220, 55, 108, 15);
+		lblStbExplain.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		lblStbExplain.setBounds(130, 62, 108, 15);
 		contentPane.add(lblStbExplain);
 		
-		btnStbOrder = new JButton("주문");
+		btnStbOrder = new JButton("담기");
 		btnStbOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String beverage = lblStb.getText();
@@ -126,13 +120,13 @@ public class OrderStbFrame extends JFrame {
 				}
 			}
 		});
-		btnStbOrder.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		btnStbOrder.setBounds(256, 114, 95, 23);
+		btnStbOrder.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		btnStbOrder.setBounds(230, 130, 70, 30);
 		contentPane.add(btnStbOrder);
 		
 		lblStbPrice = new JLabel(String.format("\\%,d", 5000));
-		lblStbPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
-		lblStbPrice.setBounds(131, 11, 52, 15);
+		lblStbPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		lblStbPrice.setBounds(170, 140, 60, 15);
 		contentPane.add(lblStbPrice);
 		
 	

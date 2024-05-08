@@ -84,7 +84,7 @@ public class OrderLtFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x+20, y+70, 450, 350);
+		setBounds(x, y+100, 400, 350);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -102,7 +102,7 @@ public class OrderLtFrame extends JFrame {
 		
 		lblLtPrice = new JLabel("\\4,000");
 		lblLtPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		lblLtPrice.setBounds(275, 260, 52, 15);
+		lblLtPrice.setBounds(220, 260, 52, 15);
 		contentPane.add(lblLtPrice);
 		
 		rbLtHot = new JRadioButton("Hot");
@@ -175,13 +175,13 @@ public class OrderLtFrame extends JFrame {
 			}
 		});
 		btnLtChoice.setFont(new Font("D2Coding", Font.PLAIN, 13));
-		btnLtChoice.setBounds(349, 207, 70, 30);
+		btnLtChoice.setBounds(295, 207, 70, 30);
 		contentPane.add(btnLtChoice);
 		
 		textLtOption = new JTextArea();
 		textLtOption.setLineWrap(true);
 		textLtOption.setFont(new Font("D2Coding", Font.PLAIN, 13));
-		textLtOption.setBounds(59, 207, 270, 30);
+		textLtOption.setBounds(59, 207, 210, 30);
 		contentPane.add(textLtOption);
 		
 		btnLtOrder = new JButton("주문");
@@ -197,7 +197,7 @@ public class OrderLtFrame extends JFrame {
 			}
 		});
 		btnLtOrder.setFont(new Font("D2Coding", Font.PLAIN, 13));
-		btnLtOrder.setBounds(349, 250, 70, 30);
+		btnLtOrder.setBounds(295, 250, 70, 30);
 		contentPane.add(btnLtOrder);
 		
 	}

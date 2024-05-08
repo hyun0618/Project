@@ -30,7 +30,6 @@ public class OrderChocoFrame extends JFrame {
 	private Component parent;
 	
 	private JPanel contentPane;
-	private JLabel lblOption;
 	private JLabel lblChocoPrice;
 	private JLabel lblChoco;
 	private JLabel lblChocoLarge;
@@ -78,7 +77,7 @@ public class OrderChocoFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x+250, y+120, 450, 260);
+		setBounds(x, y+100, 400, 300);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -92,35 +91,30 @@ public class OrderChocoFrame extends JFrame {
 		
 		lblChoco = new JLabel("초코프라푸치노");
 		lblChoco.setHorizontalAlignment(SwingConstants.CENTER);
-		lblChoco.setFont(new Font("D2Coding", Font.PLAIN, 17));
-		lblChoco.setBounds(15, 20, 160, 20);
+		lblChoco.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		lblChoco.setBounds(30, 30, 120, 20);
 		contentPane.add(lblChoco);
 		
 		lblChocoPrice = new JLabel(String.format("\\%,d", 5500));
-		lblChocoPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
-		lblChocoPrice.setBounds(184, 21, 50, 15);
+		lblChocoPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		lblChocoPrice.setBounds(220, 190, 50, 15);
 		contentPane.add(lblChocoPrice);
-		
-		lblOption = new JLabel("옵션");
-		lblOption.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		lblOption.setBounds(50, 70, 37, 15);
-		contentPane.add(lblOption);
 		
 		rbChocoRegular = new JRadioButton("Regular");
 		buttonChocoSize.add(rbChocoRegular);
-		rbChocoRegular.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbChocoRegular.setBounds(100, 75, 90, 20);
+		rbChocoRegular.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		rbChocoRegular.setBounds(50, 70, 90, 20);
 		contentPane.add(rbChocoRegular);
 		
 		rbChocoLarge = new JRadioButton("Large");
 		buttonChocoSize.add(rbChocoLarge);
-		rbChocoLarge.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbChocoLarge.setBounds(200, 75, 70, 20);
+		rbChocoLarge.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		rbChocoLarge.setBounds(150, 70, 65, 20);
 		contentPane.add(rbChocoLarge);
 		
 		lblChocoLarge = new JLabel("(+\\500)");
 		lblChocoLarge.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		lblChocoLarge.setBounds(277, 75, 50, 15);
+		lblChocoLarge.setBounds(215, 72, 50, 15);
 		contentPane.add(lblChocoLarge);
 		
 		btnChocoChoice = new JButton("선택");
@@ -129,14 +123,14 @@ public class OrderChocoFrame extends JFrame {
 				handleChocoClick();
 			}
 		});
-		btnChocoChoice.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		btnChocoChoice.setBounds(350, 110, 70, 30);
+		btnChocoChoice.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		btnChocoChoice.setBounds(295, 140, 70, 30);
 		contentPane.add(btnChocoChoice);
 		
 		textChocoOption = new JTextArea();
 		textChocoOption.setLineWrap(true);
-		textChocoOption.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		textChocoOption.setBounds(100, 170, 227, 30);
+		textChocoOption.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		textChocoOption.setBounds(50, 140, 220, 30);
 		contentPane.add(textChocoOption);
 		
 		btnChocoOrder = new JButton("주문");
@@ -151,18 +145,18 @@ public class OrderChocoFrame extends JFrame {
 				} 
 			}
 		});
-		btnChocoOrder.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		btnChocoOrder.setBounds(350, 170, 70, 30);
+		btnChocoOrder.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		btnChocoOrder.setBounds(295, 185, 70, 30);
 		contentPane.add(btnChocoOrder);
 		
 		rbChocoCreamNo = new JRadioButton("휘핑 없이");
-		rbChocoCreamNo.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbChocoCreamNo.setBounds(100, 110, 100, 20);
+		rbChocoCreamNo.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		rbChocoCreamNo.setBounds(50, 100, 100, 20);
 		contentPane.add(rbChocoCreamNo);
 		
 		rbChocoCream = new JRadioButton("휘핑크림 많이");
-		rbChocoCream.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		rbChocoCream.setBounds(200, 110, 130, 20);
+		rbChocoCream.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		rbChocoCream.setBounds(150, 100, 130, 20);
 		contentPane.add(rbChocoCream);
 	}
 	
