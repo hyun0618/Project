@@ -84,7 +84,7 @@ public class OrderLtFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x, y+100, 400, 350);
+		setBounds(x+100, y+90, 400, 350);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -184,7 +184,7 @@ public class OrderLtFrame extends JFrame {
 		textLtOption.setBounds(59, 207, 210, 30);
 		contentPane.add(textLtOption);
 		
-		btnLtOrder = new JButton("주문");
+		btnLtOrder = new JButton("담기");
 		btnLtOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String ltOption = textLtOption.getText().trim();

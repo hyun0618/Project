@@ -79,7 +79,7 @@ public class OrderEspFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x, y+100, 400, 300);
+		setBounds(x+100, y+100, 400, 300);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -119,7 +119,7 @@ public class OrderEspFrame extends JFrame {
 				handleEspClick();
 			}
 		});
-		btnEspChoice.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		btnEspChoice.setFont(new Font("D2Coding", Font.PLAIN, 13));
 		btnEspChoice.setBounds(270, 110, 70, 30);
 		contentPane.add(btnEspChoice);
 		
@@ -140,7 +140,7 @@ public class OrderEspFrame extends JFrame {
 				}
 			}
 		});
-		btnEspOrder.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		btnEspOrder.setFont(new Font("D2Coding", Font.PLAIN, 13));
 		btnEspOrder.setBounds(270, 160, 70, 30);
 		contentPane.add(btnEspOrder);
 		

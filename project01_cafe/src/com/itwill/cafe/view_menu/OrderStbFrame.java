@@ -1,5 +1,6 @@
 package com.itwill.cafe.view_menu;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -69,7 +70,7 @@ public class OrderStbFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x, y+100, 400, 300);
+		setBounds(x+100, y+100, 400, 300);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -94,6 +95,9 @@ public class OrderStbFrame extends JFrame {
 		contentPane.add(rbStbRegular);
 		
 		textStbOption = new JTextArea();
+		Color bgColor = textStbOption.getBackground();
+	    textStbOption.setCaretColor(bgColor);
+		textStbOption.setEditable(false);
 		textStbOption.setFont(new Font("D2Coding", Font.PLAIN, 13));
 		textStbOption.setBounds(115, 90, 100, 30);
 		contentPane.add(textStbOption);

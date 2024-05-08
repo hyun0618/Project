@@ -77,7 +77,7 @@ public class OrderChocoFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x, y+100, 400, 300);
+		setBounds(x+100, y+100, 400, 300);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -109,12 +109,12 @@ public class OrderChocoFrame extends JFrame {
 		rbChocoLarge = new JRadioButton("Large");
 		buttonChocoSize.add(rbChocoLarge);
 		rbChocoLarge.setFont(new Font("D2Coding", Font.PLAIN, 13));
-		rbChocoLarge.setBounds(150, 70, 65, 20);
+		rbChocoLarge.setBounds(180, 70, 65, 20);
 		contentPane.add(rbChocoLarge);
 		
 		lblChocoLarge = new JLabel("(+\\500)");
 		lblChocoLarge.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		lblChocoLarge.setBounds(215, 72, 50, 15);
+		lblChocoLarge.setBounds(245, 72, 50, 15);
 		contentPane.add(lblChocoLarge);
 		
 		btnChocoChoice = new JButton("선택");
@@ -133,7 +133,7 @@ public class OrderChocoFrame extends JFrame {
 		textChocoOption.setBounds(50, 140, 220, 30);
 		contentPane.add(textChocoOption);
 		
-		btnChocoOrder = new JButton("주문");
+		btnChocoOrder = new JButton("담기");
 		btnChocoOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String usaOption = textChocoOption.getText().trim();
@@ -149,14 +149,14 @@ public class OrderChocoFrame extends JFrame {
 		btnChocoOrder.setBounds(295, 185, 70, 30);
 		contentPane.add(btnChocoOrder);
 		
-		rbChocoCreamNo = new JRadioButton("휘핑 없이");
+		rbChocoCreamNo = new JRadioButton("휘핑 크림 없이");
 		rbChocoCreamNo.setFont(new Font("D2Coding", Font.PLAIN, 13));
-		rbChocoCreamNo.setBounds(50, 100, 100, 20);
+		rbChocoCreamNo.setBounds(50, 100, 130, 20);
 		contentPane.add(rbChocoCreamNo);
 		
 		rbChocoCream = new JRadioButton("휘핑크림 많이");
 		rbChocoCream.setFont(new Font("D2Coding", Font.PLAIN, 13));
-		rbChocoCream.setBounds(150, 100, 130, 20);
+		rbChocoCream.setBounds(180, 100, 130, 20);
 		contentPane.add(rbChocoCream);
 	}
 	

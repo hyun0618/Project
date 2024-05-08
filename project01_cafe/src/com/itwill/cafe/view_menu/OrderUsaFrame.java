@@ -94,7 +94,7 @@ public class OrderUsaFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x, y+100, 400, 300);
+		setBounds(x+100, y+100, 400, 300);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -137,7 +137,7 @@ public class OrderUsaFrame extends JFrame {
 		
 		lblUsaLarge = new JLabel("(+\\500)");
 		lblUsaLarge.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		lblUsaLarge.setBounds(271, 100, 50, 15);
+		lblUsaLarge.setBounds(265, 102, 50, 15);
 		contentPane.add(lblUsaLarge);
 		
 		

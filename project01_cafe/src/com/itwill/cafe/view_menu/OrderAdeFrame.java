@@ -74,7 +74,7 @@ public class OrderAdeFrame extends JFrame {
 			x = parent.getX();
 			y = parent.getY();
 		}
-		setBounds(x, y+100, 400, 300);
+		setBounds(x+100, y+100, 400, 300);
 		
 		if (parent == null) {
 			setLocationRelativeTo(null);
@@ -100,7 +100,7 @@ public class OrderAdeFrame extends JFrame {
 		rbAdeLarge = new JRadioButton("Large");
 		buttonGroupAde.add(rbAdeLarge);
 		rbAdeLarge.setFont(new Font("D2Coding", Font.PLAIN, 13));
-		rbAdeLarge.setBounds(150, 70, 70, 20);
+		rbAdeLarge.setBounds(150, 70, 60, 20);
 		contentPane.add(rbAdeLarge);
 		
 		btnAdeChoice = new JButton("선택");
@@ -114,8 +114,9 @@ public class OrderAdeFrame extends JFrame {
 		contentPane.add(btnAdeChoice);
 		
 		textAdeOption = new JTextArea();
+		textAdeOption.setEditable(false);
 		textAdeOption.setFont(new Font("D2Coding", Font.PLAIN, 13));
-		textAdeOption.setBounds(110, 110, 159, 40);
+		textAdeOption.setBounds(110, 110, 159, 30);
 		contentPane.add(textAdeOption);
 		
 		btnAdeOrder = new JButton("담기");
@@ -141,7 +142,7 @@ public class OrderAdeFrame extends JFrame {
 		
 		lblAdeLarge = new JLabel("(+\\500)");
 		lblAdeLarge.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		lblAdeLarge.setBounds(225, 71, 50, 15);
+		lblAdeLarge.setBounds(215, 72, 50, 15);
 		contentPane.add(lblAdeLarge);
 	
 	}
