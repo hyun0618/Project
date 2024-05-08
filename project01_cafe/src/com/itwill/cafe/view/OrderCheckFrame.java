@@ -1,5 +1,6 @@
 package com.itwill.cafe.view;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.time.LocalDateTime;
@@ -9,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -109,16 +111,19 @@ public class OrderCheckFrame extends JFrame {
 			setLocationRelativeTo(null);
 		}
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		scrollPane = new JScrollPane();
+		scrollPane.setBackground(new Color(248, 248, 255));
 		scrollPane.setBounds(12, 10, 562, 250);
 		contentPane.add(scrollPane);
 		
-		table = new JTable();
+		table = new JTable();	
+		table.setBackground(new Color(248, 248, 255));
 		table.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		scrollPane.setViewportView(table);
 		
@@ -135,6 +140,7 @@ public class OrderCheckFrame extends JFrame {
 		btnDeleteOrder = new JButton("주문 삭제");
 		btnDeleteOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				deleteOrderCheck();
 			}
 		});
 		btnDeleteOrder.setFont(new Font("D2Coding", Font.PLAIN, 13));
@@ -163,7 +169,34 @@ public class OrderCheckFrame extends JFrame {
 		btnReadAll.setFont(new Font("D2Coding", Font.PLAIN, 13));
 		btnReadAll.setBounds(20, 280, 100, 23);
 		contentPane.add(btnReadAll);
+	
+	}
+	
+	
+	private void deleteOrderCheck() {
+		int index = table.getSelectedRow(); 
+		if (index == -1) { 
+			JOptionPane.showMessageDialog(
+					contentPane, 
+					"삭제할 주문을 선택하세요.", 
+					"경고", 
+					JOptionPane.WARNING_MESSAGE);
+			return;
+		}
 		
+		int confirm = JOptionPane.showConfirmDialog(
+				contentPane, 
+				"삭제하시겠습니까?", 
+				"삭제 확인", 
+				JOptionPane.YES_NO_OPTION);
+		if (confirm == JOptionPane.YES_OPTION) {
+			Integer id = (Integer) tableModel.getValueAt(index, 0);
+			int result = daoCheck.deleteOrder(id);
+			if (result == 1) {
+				orderCheck();
+				JOptionPane.showMessageDialog(contentPane, "해당 주문내역을 삭제했습니다.");
+			} 		
+		}
 	}
 	
 	private void searchOrder() {

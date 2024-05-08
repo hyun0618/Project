@@ -48,6 +48,7 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
 
 public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
@@ -107,6 +108,15 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 	private JRadioButton rbCredit;
 	private JRadioButton rbKakaoPay;
 	private JButton btnOrdersCheck;
+	private ImageIcon icon;
+	private JLabel lblUsaImage;
+	private JLabel lblEspImage;
+	private JButton btnLtImage;
+	private JLabel lblLtImage;
+	private JLabel lblCappImage;
+	private JLabel lblAdeImage;
+	private JLabel lblChocoImage;
+	private JLabel lblStbImage;
 
 	/**
 	 * Launch the application.
@@ -167,68 +177,93 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 		coffeePanel.setLayout(null);
 		
 		btnUsa = new JButton("아메리카노");
-		btnUsa.setBackground(new Color(255, 250,240));
+		btnUsa.setBackground(new Color(255, 255, 224));
 		btnUsa.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		btnUsa.addActionListener((e) -> orderUsa());
-		btnUsa.setBounds(90, 70, 130, 25);
+		btnUsa.setBounds(90, 20, 130, 23);
 		coffeePanel.add(btnUsa);
 		
 		textUsaPrice = new JTextField();
+		textUsaPrice.setBackground(new Color(255, 250, 240));
 		textUsaPrice.setText("\\3,000");
 		textUsaPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		textUsaPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		textUsaPrice.setEditable(false);
 		textUsaPrice.setColumns(10);
-		textUsaPrice.setBounds(90, 110, 130, 20);
+		textUsaPrice.setBounds(90, 130, 130, 20);
 		coffeePanel.add(textUsaPrice);
 		
 		btnEsp = new JButton("에스프레소");
-		btnEsp.setBackground(new Color(255, 250,240));
+		btnEsp.setBackground(new Color(255, 255, 224));
 		btnEsp.addActionListener((e) -> orderEsp());
 		btnEsp.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		btnEsp.setBounds(330, 70, 130, 25);
+		btnEsp.setBounds(330, 20, 130, 23);
 		coffeePanel.add(btnEsp);
 		
 		textEspPrice = new JTextField();
+		textEspPrice.setBackground(new Color(255, 250, 240));
 		textEspPrice.setText("\\3,000");
 		textEspPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		textEspPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		textEspPrice.setEditable(false);
 		textEspPrice.setColumns(10);
-		textEspPrice.setBounds(330, 110, 130, 20);
+		textEspPrice.setBounds(330, 130, 130, 20);
 		coffeePanel.add(textEspPrice);
 		
 		btnLt = new JButton("카페라떼");
-		btnLt.setBackground(new Color(255, 250,240));
+		btnLt.setBackground(new Color(255, 255, 224));
 		btnLt.addActionListener((e) -> orderLt());
 		btnLt.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		btnLt.setBounds(90, 220, 130, 25);
+		btnLt.setBounds(90, 190, 130, 23);
 		coffeePanel.add(btnLt);
 		
 		textLtPrice = new JTextField();
+		textLtPrice.setBackground(new Color(255, 250, 240));
 		textLtPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		textLtPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		textLtPrice.setText("\\4,000");
 		textLtPrice.setEditable(false);
-		textLtPrice.setBounds(90, 260, 130, 20);
+		textLtPrice.setBounds(90, 300, 130, 20);
 		coffeePanel.add(textLtPrice);
 		textLtPrice.setColumns(10);
 		
 		btnCapp = new JButton("카푸치노");
-		btnCapp.setBackground(new Color(255, 250,240));
+		btnCapp.setBackground(new Color(255, 255, 224));
 		btnCapp.addActionListener((e) -> orderCapp());
 		btnCapp.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		btnCapp.setBounds(330, 220, 130, 25);
+		btnCapp.setBounds(330, 190, 130, 23);
 		coffeePanel.add(btnCapp);
 		
 		textCappPrice = new JTextField();
+		textCappPrice.setBackground(new Color(255, 250, 240));
 		textCappPrice.setText("\\4,000");
 		textCappPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		textCappPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		textCappPrice.setEditable(false);
 		textCappPrice.setColumns(10);
-		textCappPrice.setBounds(330, 260, 130, 20);
+		textCappPrice.setBounds(330, 300, 130, 20);
 		coffeePanel.add(textCappPrice);
+		
+		lblUsaImage = new JLabel("New label");
+		lblUsaImage.setIcon(new ImageIcon("images/usa_icon.png"));
+		lblUsaImage.setBounds(120, 50, 70, 70);
+		coffeePanel.add(lblUsaImage);
+		
+		lblEspImage = new JLabel("New label");
+		lblEspImage.setIcon(new ImageIcon("images/esp_icon.png"));
+		lblEspImage.setBounds(360, 50, 70, 70);
+		coffeePanel.add(lblEspImage);
+		
+		
+		lblLtImage = new JLabel("New label");
+		lblLtImage.setIcon(new ImageIcon("images/latte_icon.png"));
+		lblLtImage.setBounds(120, 220, 70, 70);
+		coffeePanel.add(lblLtImage);
+		
+		lblCappImage = new JLabel("New label");
+		lblCappImage.setIcon(new ImageIcon("images/capp_icon.png"));
+		lblCappImage.setBounds(360, 220, 70, 70);
+		coffeePanel.add(lblCappImage);
 		tabbedPane.addChangeListener(new ChangeListener() {
 			
 			@Override
@@ -245,58 +280,75 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 		nonCoffee.setLayout(null);
 		
 		btnAde = new JButton("자몽에이드");
-		btnAde.setBackground(new Color(255, 245, 238));
+		btnAde.setBackground(new Color(255, 228, 225));
 		btnAde.addActionListener(
 				(e) -> OrderAdeFrame.showOrderAdeFrame(CafeOrderFrame.this)
 		);
 		btnAde.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		btnAde.setBounds(90, 70, 130, 25);
+		btnAde.setBounds(90, 20, 130, 23);
 		nonCoffee.add(btnAde);
 		
 		textAdePrice = new JTextField();
+		textAdePrice.setBackground(new Color(255, 245, 238));
 		textAdePrice.setText("\\5,000");
 		textAdePrice.setHorizontalAlignment(SwingConstants.CENTER);
 		textAdePrice.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		textAdePrice.setEditable(false);
 		textAdePrice.setColumns(10);
-		textAdePrice.setBounds(90, 110, 130, 20);
+		textAdePrice.setBounds(90, 130, 130, 20);
 		nonCoffee.add(textAdePrice);
 		
 		btnStb = new JButton("딸기스무디");
-		btnStb.setBackground(new Color(255, 245, 238));
+		btnStb.setBackground(new Color(255, 228, 225));
 		btnStb.addActionListener(
 				(e) -> OrderStbFrame.showOrderStbFrame(CafeOrderFrame.this)
 		);
 		btnStb.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		btnStb.setBounds(330, 70, 130, 25);
+		btnStb.setBounds(330, 20, 130, 23);
 		nonCoffee.add(btnStb);
 		
 		textStbPrice = new JTextField();
+		textStbPrice.setBackground(new Color(255, 245, 238));
 		textStbPrice.setText("\\5,000");
 		textStbPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		textStbPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		textStbPrice.setEditable(false);
 		textStbPrice.setColumns(10);
-		textStbPrice.setBounds(330, 110, 130, 20);
+		textStbPrice.setBounds(330, 130, 130, 20);
 		nonCoffee.add(textStbPrice);
 		
 		btnChoco = new JButton("초코프라푸치노");
-		btnChoco.setBackground(new Color(255, 245, 238));
+		btnChoco.setBackground(new Color(255, 228, 225));
 		btnChoco.addActionListener(
 				(e) -> OrderChocoFrame.showOrderChocoFrame(CafeOrderFrame.this)
 		);
 		btnChoco.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		btnChoco.setBounds(90, 220, 150, 25);
+		btnChoco.setBounds(90, 190, 150, 23);
 		nonCoffee.add(btnChoco);
 		
 		textChocoPrice = new JTextField();
+		textChocoPrice.setBackground(new Color(255, 245, 238));
 		textChocoPrice.setText("\\5,500");
 		textChocoPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		textChocoPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		textChocoPrice.setEditable(false);
 		textChocoPrice.setColumns(10);
-		textChocoPrice.setBounds(90, 260, 150, 20);
+		textChocoPrice.setBounds(90, 300, 150, 20);
 		nonCoffee.add(textChocoPrice);
+		
+		lblAdeImage = new JLabel("New label");
+		lblAdeImage.setIcon(new ImageIcon("images/ade_icon.png"));
+		lblAdeImage.setBounds(120, 50, 70, 70);
+		nonCoffee.add(lblAdeImage);
+		
+		lblChocoImage = new JLabel("New label");
+		lblChocoImage.setBounds(120, 220, 70, 70);
+		nonCoffee.add(lblChocoImage);
+		
+		lblStbImage = new JLabel("New label");
+		lblStbImage.setIcon(new ImageIcon("images/stb_icon.png"));
+		lblStbImage.setBounds(360, 50, 70, 70);
+		nonCoffee.add(lblStbImage);
 		
 		OrderDetails = new JPanel();
 		OrderDetails.setBackground(new Color(255, 250, 250));
@@ -318,16 +370,18 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 		scrollPane.setViewportView(table);
 		
 		btnDeleteChoice = new JButton("선택 삭제");
+		btnDeleteChoice.setBackground(new Color(255, 240, 245));
 		btnDeleteChoice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				deleteOrderChoice();
 			}
 		});
-		btnDeleteChoice.setBounds(30, 210, 110, 25);
+		btnDeleteChoice.setBounds(30, 210, 110, 23);
 		OrderDetails.add(btnDeleteChoice);
 		btnDeleteChoice.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		
 		btnDeleteAll = new JButton("전체 삭제");
+		btnDeleteAll.setBackground(new Color(255, 240, 245));
 		btnDeleteAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				daoHist.deleteAll();
@@ -335,18 +389,19 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 			}
 		});
 		btnDeleteAll.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		btnDeleteAll.setBounds(30, 250, 110, 25);
+		btnDeleteAll.setBounds(30, 250, 110, 23);
 		OrderDetails.add(btnDeleteAll);	
 		
 		lblPayAmount = new JLabel("결제 금액");
+		lblPayAmount.setBackground(new Color(255, 250, 250));
 		lblPayAmount.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPayAmount.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		lblPayAmount.setBounds(200, 210, 100, 20);
+		lblPayAmount.setBounds(200, 210, 100, 23);
 		OrderDetails.add(lblPayAmount);
 		
 		textPayment = new JTextField();
 		textPayment.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		textPayment.setBounds(320, 210, 110, 20);
+		textPayment.setBounds(320, 215, 110, 20);
 		OrderDetails.add(textPayment);
 		textPayment.setColumns(10);
 		
@@ -357,18 +412,21 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 		OrderDetails.add(lblPayOption);
 		
 		rbCredit = new JRadioButton("신용카드");
+		rbCredit.setBackground(new Color(255, 250, 250));
 		buttonGroupPay.add(rbCredit);
 		rbCredit.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		rbCredit.setBounds(210, 300, 100, 23);
 		OrderDetails.add(rbCredit);
 		
 		rbKakaoPay = new JRadioButton("카카오페이");
+		rbKakaoPay.setBackground(new Color(255, 250, 250));
 		buttonGroupPay.add(rbKakaoPay);
 		rbKakaoPay.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		rbKakaoPay.setBounds(324, 300, 110, 23);
 		OrderDetails.add(rbKakaoPay);
 		
 		btnPayOrder = new JButton("결제");
+		btnPayOrder.setBackground(new Color(255, 240, 245));
 		btnPayOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				saveOrder();
@@ -379,10 +437,12 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 		});
 		
 		btnPayOrder.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		btnPayOrder.setBounds(460, 300, 70, 25);
+		btnPayOrder.setBounds(460, 300, 70, 23);
 		OrderDetails.add(btnPayOrder);
 		
+		
 		btnOrdersCheck = new JButton("주문내역");
+		btnOrdersCheck.setBackground(new Color(230, 230, 250));
 		btnOrdersCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				List<String> selectedBeverages = getAllBeverages();
@@ -392,7 +452,7 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 			}
 		});
 		btnOrdersCheck.setFont(new Font("D2Coding", Font.PLAIN, 13));
-		btnOrdersCheck.setBounds(460, 15, 110, 25);
+		btnOrdersCheck.setBounds(470, 20, 100, 23);
 		contentPane.add(btnOrdersCheck);
 		
 	}
@@ -464,6 +524,10 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 	}
 
 	
+	private String tablePriceFormat(int orderPrice) {
+		return String.format("\\%,d", orderPrice);
+	}
+	
 	
 // 테이블 ORDERS 	
 	private void orderHistory() {
@@ -479,7 +543,7 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 	    for (OrderHistory h : hist) {
 	        Object[] row = {
 	                h.getId(), h.getBeverage(), 
-	                h.getBeverageOption(), h.getBeveragePrice()
+	                h.getBeverageOption(), tablePriceFormat(h.getBeveragePrice())
 	        };
 	        tableModel.addRow(row);
 	      
