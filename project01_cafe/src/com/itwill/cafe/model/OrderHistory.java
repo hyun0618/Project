@@ -1,14 +1,10 @@
 package com.itwill.cafe.model;
 
-
-
-import java.time.LocalDateTime;
-
 public class OrderHistory {
 	
 	public static final class HistoryEntity {
 		
-		public static final String TBL_ORDERS = "ORDERS";
+		public static final String TBL_ORDERS = "orders";
 		
 		public static final String COL_ID = "id";
 		public static final String COL_BEVERAGE = "beverage";
