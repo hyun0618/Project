@@ -42,7 +42,7 @@ public class CafeMain {
 	 */
 	private void initialize() {		
 		frame = new JFrame();
-		frame.setSize(500, 500);
+		frame.setSize(600, 450);
 		frame.setLocationRelativeTo(null);
 		frame.getContentPane().setLayout(null);
 		
@@ -59,8 +59,8 @@ public class CafeMain {
 		});
 		
 		
-		btnOrder.setFont(new Font("D2Coding", Font.PLAIN, 20));
-		btnOrder.setBounds(150, 300, 200, 50);
+		btnOrder.setFont(new Font("D2Coding", Font.PLAIN, 17));
+		btnOrder.setBounds(200, 300, 200, 50);
 		btnOrder.setBackground(Color.WHITE);
 		btnOrder.setForeground(Color.BLACK);
 		frame.getContentPane().add(btnOrder);
