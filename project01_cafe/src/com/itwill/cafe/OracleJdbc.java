@@ -4,7 +4,7 @@ public interface OracleJdbc {
 	// public static final 생략 가능
 	
 	// 오라클 데이터베이스에 접속하기 위한 라이브러리 정보와 서버 주소/포트/SID 정보
-	String URL = "jdbc:oracle:thin:@192.168.20.15:xe"; // 선생님: 192.168.20.31 / 본인: localhost / 아이티윌 컴퓨터: 192.168.20.15
+	String URL = "jdbc:oracle:thin:@192.168.20.15:1521:xe"; // 선생님: 192.168.20.31 / 본인: localhost1521 / 아이티윌 컴퓨터: 192.168.20.15
 	
 	// 오라클 데이터베이스에 접속할 수 있는 계정 이름
 	String USER = "scott";
