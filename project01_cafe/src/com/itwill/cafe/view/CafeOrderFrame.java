@@ -244,25 +244,24 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 		textCappPrice.setBounds(330, 300, 130, 20);
 		coffeePanel.add(textCappPrice);
 		
-		lblUsaImage = new JLabel("New label");
+		lblUsaImage = new JLabel("");
 		lblUsaImage.setIcon(new ImageIcon("images/usa_icon.png"));
 		lblUsaImage.setBounds(120, 50, 70, 70);
 		coffeePanel.add(lblUsaImage);
 		
-		lblEspImage = new JLabel("New label");
+		lblEspImage = new JLabel("");
 		lblEspImage.setIcon(new ImageIcon("images/esp_icon.png"));
-		lblEspImage.setBounds(360, 50, 70, 70);
-		coffeePanel.add(lblEspImage);
+		lblEspImage.setBounds(380, 60, 70, 70);
+		coffeePanel.add(lblEspImage);	
 		
-		
-		lblLtImage = new JLabel("New label");
+		lblLtImage = new JLabel("");
 		lblLtImage.setIcon(new ImageIcon("images/latte_icon.png"));
-		lblLtImage.setBounds(120, 220, 70, 70);
+		lblLtImage.setBounds(125, 220, 70, 70);
 		coffeePanel.add(lblLtImage);
 		
-		lblCappImage = new JLabel("New label");
+		lblCappImage = new JLabel("");
 		lblCappImage.setIcon(new ImageIcon("images/capp_icon.png"));
-		lblCappImage.setBounds(360, 220, 70, 70);
+		lblCappImage.setBounds(370, 230, 70, 70);
 		coffeePanel.add(lblCappImage);
 		tabbedPane.addChangeListener(new ChangeListener() {
 			
@@ -323,7 +322,7 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 				(e) -> OrderChocoFrame.showOrderChocoFrame(CafeOrderFrame.this)
 		);
 		btnChoco.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		btnChoco.setBounds(90, 190, 150, 23);
+		btnChoco.setBounds(80, 190, 150, 23);
 		nonCoffee.add(btnChoco);
 		
 		textChocoPrice = new JTextField();
@@ -333,19 +332,20 @@ public class CafeOrderFrame extends JFrame implements UsaOrderNotify {
 		textChocoPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		textChocoPrice.setEditable(false);
 		textChocoPrice.setColumns(10);
-		textChocoPrice.setBounds(90, 300, 150, 20);
+		textChocoPrice.setBounds(80, 300, 150, 20);
 		nonCoffee.add(textChocoPrice);
 		
-		lblAdeImage = new JLabel("New label");
+		lblAdeImage = new JLabel("");
 		lblAdeImage.setIcon(new ImageIcon("images/ade_icon.png"));
 		lblAdeImage.setBounds(120, 50, 70, 70);
 		nonCoffee.add(lblAdeImage);
 		
-		lblChocoImage = new JLabel("New label");
-		lblChocoImage.setBounds(120, 220, 70, 70);
+		lblChocoImage = new JLabel("");
+		lblChocoImage.setIcon(new ImageIcon("images/choco_icon.png"));
+		lblChocoImage.setBounds(140, 220, 70, 70);
 		nonCoffee.add(lblChocoImage);
 		
-		lblStbImage = new JLabel("New label");
+		lblStbImage = new JLabel("");
 		lblStbImage.setIcon(new ImageIcon("images/stb_icon.png"));
 		lblStbImage.setBounds(360, 50, 70, 70);
 		nonCoffee.add(lblStbImage);
